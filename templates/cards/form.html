@@ -1,0 +1,117 @@
+{% extends 'home/base.html' %}
+
+{% block content %}
+
+{% load static %}
+
+<style>
+    @media (max-width: 850px) {
+        .container-flex{
+            display: flex;
+            flex-direction: column;
+        }
+        .button{
+            width: 50% !important;
+        }
+    }
+</style>
+<div class="container">
+    <form action=" {% url 'cards:generate' %} " method="post"  enctype="multipart/form-data">
+        {% csrf_token %}
+      <div class="container-flex" style="display: flex;justify-content:space-around;">
+        <div>
+        <h2 class="h4 mt-2">Enter Your Details : </h2>
+       
+        <div class="form-group">
+            <label for="lname"> Name</label>
+            <input type="text" class="form-control" id="name" required
+                placeholder="Enter your name" name="name">
+        </div>
+        <div class="form-group">
+            <label for="email"> Email Id:</label>
+            <input type="email" class="form-control" id="email" required
+                placeholder="Enter your Email Id" name="email">
+        </div>
+        <div class="form-group">
+            <label for="email"> Your Role :</label>
+            <input type="text" class="form-control" id="role" required
+                placeholder="Enter your role " name="role">
+        </div>
+        <div class="form-group">
+            <label for="contact"> Contact No:</label>
+            <input type="text" class="form-control" id="contact" required
+                placeholder="Enter Contact Number" name="contact">
+        </div>
+    
+  
+       
+        <!-- <div class="form-group form-check">
+            <label class="form-check-label">
+                <input class="form-check-input" type="checkbox"
+                    name="remember">
+                    Remember me
+            </label>
+        </div> -->
+        <!-- <label for="theme">Card Theme</label>
+        <div class="form-check" style="padding:1.5rem">
+            <input class="form-check-input" style="cursor:pointer" type="radio" value="1" name="theme" id="flexRadioDefault1" checked>
+            <label class="form-check-label" style="cursor:pointer" for="flexRadioDefault1">
+             Theme 1
+             <img  src="{% static 'cards/images/card1.png' %}" alt="" width="200px" height="100px">
+            </label>
+          
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" style="cursor:pointer" type="radio" name="theme" value="2" id="flexRadioDefault2" >
+            <label class="form-check-label" style="cursor:pointer" for="flexRadioDefault2">
+              Theme 2
+              <img src="{% static 'cards/images/card2.png' %}" alt="" width="200px" height="100px">
+            </label> -->
+           
+          <!-- </div> -->
+        <!-- </div> -->
+       </div> 
+    <div>
+        <h2 class="h4 mt-2">Enter The Company Details : </h2>
+        <div class="form-group">
+            <label for="lname">Company Name</label>
+            <input type="text" class="form-control" id="lname" required
+                placeholder="Enter company name" name="companyname">
+        </div>
+        <div class="form-group">
+            <label for="email">Company Email Id:</label>
+            <input type="email" class="form-control" id="email" required
+                placeholder="Enter Company Email Id" name="companyemail">
+        </div>
+        <div class="form-group">
+            <label for="contact">Company Contact No:</label>
+            <input type="text" class="form-control" id="contact" required
+                placeholder="Enter Company Contact Number" name="companycontact">
+        </div>
+        <div class="form-group">
+            <label for="contact">Company Logo:</label>
+            <div class="mb-3">
+                <input class="form-control" name="logo" required type="file" id="formFile">
+              </div>
+        </div>
+        <div class="form-group">
+            <label for="contact">Company Webiste:</label>
+            <input type="text" class="form-control" id="contact" 
+                placeholder="Enter Company Website" name="website">
+        </div>
+        <div class="form-group">
+            <label for="contact">Company Address:</label>
+            <input type="text" class="form-control" id="contact" 
+                placeholder="Enter Company Address" name="address">
+        </div>
+    </div>
+ </div>
+ <div style="display: flex;justify-content:center;">
+    <button type="submit" class="btn bg-primary p-2 text-light m-5 button" style="width: 15%;">
+        Submit
+    </button>
+    </div>
+    </form>
+</div>
+
+{% endblock content %}

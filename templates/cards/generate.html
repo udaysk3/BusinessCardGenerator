@@ -1,0 +1,106 @@
+{% extends 'cards/base.html' %}
+{% load static %}
+
+{% block sidebar %}
+{% for message in messages %}
+<div class="container-fluid p-0 m-0">
+  <div class="alert {{ message.tags }} alert-dismissible m-0 text-center" role="alert" >
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="True">&times;</span>
+    </button>
+   Hey <b> {{username}} </b>! {{ message }}
+  </div>
+</div>
+{% endfor %}
+<style>
+    .components li{
+        margin:0.5rem 0;
+        cursor: pointer;
+    }
+.components li:hover {
+    background-color: #090909;
+    color: #d5d5d5;
+}
+</style>
+
+
+<div class="wrapper d-flex align-items-stretch">
+    
+    <nav id="sidebar" class="active">
+        <h5><a href="/"  class="logo">CG</a></h5>
+
+        <h6><a href="/"  class="text-light " style="font-size:small; border-bottom:2px solid #fff;pointer-events: none">Free templates</a></h6>
+<ul class="list-unstyled components mb-5">
+
+    <li class="active">
+        <a href="{% url 'cards:view' id=id theme=1 %}">
+        <img width="80px" src="https://static.vecteezy.com/system/resources/previews/001/409/551/original/gradient-yellow-orange-curve-business-card-template-free-vector.jpg" alt="">
+       Template1  </a></li>
+    <li class="active">
+      <a href="{% url 'cards:view' id=id theme=2 %}">
+        <img width="80px" src="https://static.vecteezy.com/system/resources/previews/001/409/551/original/gradient-yellow-orange-curve-business-card-template-free-vector.jpg" alt="">
+       Template2 </a> </li>
+    <li class="active">
+      <a href="{% url 'cards:view' id=id theme=3 %}">
+        <img width="80px" src="https://static.vecteezy.com/system/resources/previews/001/409/551/original/gradient-yellow-orange-curve-business-card-template-free-vector.jpg" alt="">
+       Template3 </a>  </li>
+    <li class="active">
+      <a href="{% url 'cards:view' id=id theme=4 %}">
+        <img width="80px" src="https://static.vecteezy.com/system/resources/previews/001/409/551/original/gradient-yellow-orange-curve-business-card-template-free-vector.jpg" alt="">
+       Template4 </a> </li>
+    <li class="active">
+      <a href="{% url 'cards:view' id=id theme=5 %}">
+        <img width="80px" src="https://static.vecteezy.com/system/resources/previews/001/409/551/original/gradient-yellow-orange-curve-business-card-template-free-vector.jpg" alt="">
+       Template5 </a> </li>
+
+        <h6><a href="/"  class="text-light " style="font-size:small;border-bottom:2px solid #fff;pointer-events: none">Premium templates</a></h6>
+<ul class="list-unstyled components mb-5">
+
+    <li class="active">
+      <a href="{% url 'cards:view' id=id theme=6 %}">
+        <img width="80px" src="https://static.vecteezy.com/system/resources/previews/001/409/551/original/gradient-yellow-orange-curve-business-card-template-free-vector.jpg" alt="">
+       Template1 </a>  </li>
+    <li class="active">
+      <a href="{% url 'cards:view' id=id theme=7 %}">
+        <img width="80px" src="https://static.vecteezy.com/system/resources/previews/001/409/551/original/gradient-yellow-orange-curve-business-card-template-free-vector.jpg" alt="">
+       Template2 </a> </li>
+    <li class="active">
+      <a href="{% url 'cards:view' id=id theme=8 %}">
+        <img width="80px" src="https://static.vecteezy.com/system/resources/previews/001/409/551/original/gradient-yellow-orange-curve-business-card-template-free-vector.jpg" alt="">
+       Template3 </a>  </li>
+    <li class="active">
+      <a href="{% url 'cards:view' id=id theme=8 %}">
+        <img width="80px" src="https://static.vecteezy.com/system/resources/previews/001/409/551/original/gradient-yellow-orange-curve-business-card-template-free-vector.jpg" alt="">
+       Template4 </a> </li>
+    <li class="active">
+      <a href="{% url 'cards:view' id=id theme=8 %}">
+        <img width="80px" src="https://static.vecteezy.com/system/resources/previews/001/409/551/original/gradient-yellow-orange-curve-business-card-template-free-vector.jpg" alt="">
+       Template5 </a> </li>
+
+
+  <li class="active">
+    <a href="/"><span class="fa fa-home"></span> <img src="" alt="">Home</a>
+  </li>
+  <li>
+      <a href="/about"><span class="fa fa-user"></span> <img src="" alt="">About</a>
+  </li>
+  <li>
+    <a href="/contact"><span class="fa fa-sign-out"></span> <img src="" alt="">Logout</a>
+  </li>
+</ul>
+
+
+
+<script>
+</script>
+{% endblock sidebar %}
+
+{% block content %}
+<div class="card" style="width: 50rem;margin:0 auto;; background:none;">
+  <div class="card-body">
+    <h5 class="card-title">Card title</h5>
+    <p class="card-text">Your Cards are Ready! Choose any Template</p>
+    <a href="#" class="btn btn-primary">View Card</a>
+  </div>
+</div>
+{% endblock %}

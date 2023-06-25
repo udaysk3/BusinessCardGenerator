@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		{% load static %}
+		<meta charset="utf-8">
+		<title>Signup Here</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+		<!-- STYLE CSS -->
+		<link rel="stylesheet" href="{% static 'user/css/style.css' %}">
+		
+	</head>
+
+	<body>
+
+		<div class="wrapper">
+			<div class="inner">
+				<div class="image-holder">
+					<img  src="https://plus.unsplash.com/premium_photo-1682148400830-e400005b5382?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=388&q=80" alt="">
+				</div>
+				<form action="{% url 'user:signup' %}" method="POST">
+					<h3>Sign Up</h3>
+					{% csrf_token %}
+					{% if message %} 
+					<p class="hint-text text-danger">{{message}}</p>
+					{% endif %}
+					<div class="form-holder active">
+						<input type="email	" class="form-control" name="username" placeholder="email" required="required">
+					</div>
+					<div class="form-holder">
+						<input type="password" placeholder="Password" name="password" class="form-control" style="font-size: 15px;">
+					</div>
+					<div class="form-holder">
+						<input type="password" placeholder="Confirm Password" name="confirm_password" class="form-control" style="font-size: 15px;">
+					</div>
+					<div class="checkbox">
+						<label>
+							<input type="checkbox" checked> I agree all statement in <a href="#">Terms & Conditions</a>
+							<span class="checkmark"></span>
+						</label>
+					</div>
+					<div class="form-login">
+						<button>Sign up</button>
+						<p>Already Have account? <a href="{% url 'user:signin' %}">Login</a></p>
+					</div>
+				</form>
+			</div>
+		</div>
+
+		<script src=" {% static 'user/js/jquery-3.3.1.min.js' %} "></script>
+		<script src=" {% static 'user/js/main.js' %} "></script>
+	</body><!-- This templates was made by Colorlib (https://colorlib.com) -->
+</html>
