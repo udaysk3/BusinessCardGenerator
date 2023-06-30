@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-zj^mz$oa-8+b9#9jz!iqx7)6@b11@yh$7w%k12^bp0zfm7zs_w
 DEBUG = True
 
 ALLOWED_HOSTS = ['*']
-
+CSRF_TRUSTED_ORIGINS = ['https://*.railway.app']
 MESSAGE_TAGS = {
         messages.DEBUG: 'alert-secondary',
         messages.INFO: 'alert-info',
@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'home',
     'cards',
     'user'
+    'corsheaders'
 ]
 
 MIDDLEWARE = [
@@ -58,6 +59,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
 ]
 
 ROOT_URLCONF = 'CardGenerator.urls'
