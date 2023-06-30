@@ -144,7 +144,8 @@ AUTH_USER_MODEL = "user.User"
 import os
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [ os.path.join(BASE_DIR, 'static') ]
-
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 # PAYPAL_RECEIVER_EMAIL = 'udaysk963@gmail.com'
 
 PAYPAL_TEST = True
