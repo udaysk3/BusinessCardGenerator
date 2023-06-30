@@ -47,7 +47,7 @@ INSTALLED_APPS = [
     'paypal.standard.ipn',
     'home',
     'cards',
-    'user'
+    'user',
     'corsheaders'
 ]
 
