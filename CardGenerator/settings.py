@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-zj^mz$oa-8+b9#9jz!iqx7)6@b11@yh$7w%k12^bp0zfm7zs_w
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 MESSAGE_TAGS = {
         messages.DEBUG: 'alert-secondary',
@@ -144,6 +144,7 @@ AUTH_USER_MODEL = "user.User"
 import os
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [ os.path.join(BASE_DIR, 'static') ]
+STATIC_ROOT =os.path.join(BASE_DIR, 'staticfiles')
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 # PAYPAL_RECEIVER_EMAIL = 'udaysk963@gmail.com'
