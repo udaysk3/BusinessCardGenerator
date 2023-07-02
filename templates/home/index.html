@@ -1,5 +1,5 @@
 {% extends 'home/base.html' %}
-
+{% load static %}
 
 {% block content %}
 
@@ -150,35 +150,35 @@
   </ul>
 </section>
 <section>
-  <h1 class="text-accent text-center">pricing</h1>
-<p class="fs-500 text-center">plans that work for everyone</p>
+  <h1 class="text-accent text-center">Designs</h1>
+<p class="fs-500 text-center">Designs that are loved by everyone</p>
 
 <div class="plans">
 
     <div class="plan plan--light">
         <h2 class="plan-title">basic</h2>
 
-        <p class="plan-price">$0.00<span>/month</span></p>
+        <img width="150px" src=" {% static 'home/images/cardsample.jpg' %} " alt="">
 
         <p class="plan-description">
             Eleifend cursus volutpat risus convallis nam sed
             quam sollicitudin eget leo at erat cursus justo
         </p>
 
-        <a href="#" class="btn text-center">Join Now</a>
+        <a   href="{% url 'cards:form' %}" class="btn text-center">Create Now</a>
     </div>
 
     <div class="plan plan--accent">
         <h2 class="plan-title">Premium</h2>
 
-        <p class="plan-price">$10.00<span>/month</span></p>
+        <img width="150px" src=" {% static 'home/images/cardsample2.jpg' %} " alt="">
 
         <p class="plan-description">
             Eleifend cursus volutpat risus convallis nam sed
             quam sollicitudin eget leo at erat cursus justo
         </p>
 
-        <a href="#" class="btn text-center">Join Now</a>
+        <a   href="{% url 'cards:form' %}" class="btn text-center">Create Now</a>
     </div>
 
 </div>

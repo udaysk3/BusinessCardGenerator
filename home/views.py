@@ -4,7 +4,7 @@ from user.models import User
 # Create your views here.
 
 def home(request):
-    if request.session.get('username',None):
+    if request.session.get('username'):
         cards = Detail.objects.filter(created_for=User.objects.get(username=request.session['username']))
         return render(request,'home/index.html',{
             'cards':cards

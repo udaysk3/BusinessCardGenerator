@@ -1,12 +1,12 @@
 {% extends 'cards/generate.html' %}
 
 {% block content %}
-
+{% load static %}
 
 {% if theme == 1 %}
 
 
-<div class="front-side">
+<div class="front-side" id="image">
   <style>
     .front-side,
     .back-side {
@@ -122,7 +122,42 @@
       text-align: center;
       color: #343536;
     }
+    .button-container {
+      display: flex;
+
+      flex-direction: column;
+      padding: 0.5rem;
+      align-items: flex-end;
+      margin-top: 10px;
+    }
     
+    .button-container button {
+      margin-top: 5px;
+    }
+    .animated {
+      animation-duration: 0.3s;
+      animation-fill-mode: both;
+    }
+  
+    .fadeInUp {
+      animation-name: fadeInUp;
+    }
+  
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translate3d(0, 100%, 0);
+      }
+  
+      to {
+        opacity: 1;
+        transform: none;
+      }
+    }
+    .hidden {
+      display: none;
+      animation-name: fadeInUp;
+    }
 </style>
     <div class="color-grid">
         <div class="black"></div>
@@ -176,7 +211,7 @@
        
 
         <div class="emailId">
-            <img width="50px" src="../../{{details.companylogo}}" alt="">
+            <img width="50px" src="/media/{{details.companylogo}}" alt="">
             
             <p class="web m-2" style="font-size: 0.6rem;color:#e3e3e3">
                 <strong>{{details.website}}</strong>
@@ -186,7 +221,10 @@
             </p>
         </div>
     </div>
-</div>
+    
+</div> 
+<button style="float:right;" class="btn btn-primary share-btn" onclick="screen()" type="button">Share</button>
+
 {% elif theme == 2%}
 <style>
 
@@ -419,15 +457,60 @@
   transform: rotateX(180deg);
   box-shadow: none;
 }
+.button-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  padding: 0.5rem;
+  opacity: 0;
+  animation: fadeInUp 0.5s forwards;
+}
+.button-container button {
+  margin-top: 5px;
+      padding: 10px 20px;
+      border-radius: 5px;
+      font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+.button-container button:hover {
+  background-color: #ccc;
+}
+
+
+.animated {
+  animation-duration: 0.3s;
+  animation-fill-mode: both;
+}
+
+.fadeInUp {
+  animation-name: fadeInUp;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 100%, 0);
+  }
+
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+.hidden {
+  display: none;
+  animation-name: fadeInUp;
+}
 
 </style>
-<div class="container">
+<div class="container" id="image">
 	<div class="display">
 		<div class="display-item">
 			<div class="business-card">
 				<div class="profile">
 					<div class="profile-image">
-            <img width="80px" class="mt-4" src="../../{{details.companylogo}}" alt="">
+            <img width="80px" class="mt-4" src="/media/{{details.companylogo}}" alt="">
           </div>
 					<div class="profile-title">
 						<h2>{{details.name}}</h2>
@@ -452,7 +535,11 @@
 				</div>
 			</div>
 		</div>
-		
+    <button style="float:right;" class="btn btn-primary share-btn" onclick="screen()" type="button">Share</button>
+  </div>
+
+</div>
+	
 
   {% elif theme == 3 %}
   <style>
@@ -691,13 +778,49 @@
       transform: rotateX(180deg);
       box-shadow: none;
     }
+    .button-container {
+      display: flex;
+
+      flex-direction: column;
+      padding: 0.5rem;
+      align-items: flex-end;
+      margin-top: 10px;
+    }
+    
+    .button-container button {
+      margin-top: 5px;
+    }
+    .animated {
+      animation-duration: 0.3s;
+      animation-fill-mode: both;
+    }
+  
+    .fadeInUp {
+      animation-name: fadeInUp;
+    }
+  
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translate3d(0, 100%, 0);
+      }
+  
+      to {
+        opacity: 1;
+        transform: none;
+      }
+    }
+    .hidden {
+      display: none;
+      animation-name: fadeInUp;
+    }
   </style>
-  <div class="display-item">
+  <div class="display-item " id="image">
     <div class="flippable-business-card">
       <div class="front">
         <div class="front-top">
           <div class="profile-image">
-            <img width="80px" style="margin-left: 1rem;" src="../../{{details.companylogo}}" alt="">
+            <img width="80px" style="margin-left: 1rem;" src="/media/{{details.companylogo}}" alt="">
           </div>
           <div class="qr" >
             <p class="" style="color: #ffffff;">QR code</p> <img src="" style="width: 3.2rem"  alt="QR Code" id="qr">
@@ -743,8 +866,11 @@
       </div>
     </div>
   </div>
+  <button style="float:right;" class="btn btn-primary share-btn" onclick="screen()" type="button">Share</button>  
 </div>
+
 </div>
+
 {% elif theme == 4 %}
 
 <style> 
@@ -795,14 +921,60 @@
    }
  }
   
+.button-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  padding: 0.5rem;
+  opacity: 0;
+  animation: fadeInUp 0.5s forwards;
+}
+.button-container button {
+  margin-top: 5px;
+      padding: 10px 20px;
+      border-radius: 5px;
+      font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+.button-container button:hover {
+  background-color: #ccc;
+}
+
+
+.animated {
+  animation-duration: 0.3s;
+  animation-fill-mode: both;
+}
+
+.fadeInUp {
+  animation-name: fadeInUp;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 100%, 0);
+  }
+
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+.hidden {
+  display: none;
+  animation-name: fadeInUp;
+}
+
  </style>
- <div class="container">
+ <div class="container" id="image">
    <div class="card">
      <div class="back side">
        <h3 class="name">{{details.name}}</h3>
        <div>Role : {{details.role}}</div>    
        <img style="float: right;" width="50px"  src="" style="width: 3.2rem;"  alt="QR Code" id="qr">
-       <img style="float: right;margin:0 1rem;" width="50px" src="../../{{details.companylogo}}" alt="">   
+       <img style="float: right;margin:0 1rem;" width="50px" src="/media/{{details.companylogo}}" alt="">   
        <div class="info">
          <p style="font-size:0.8rem;" class="text-secondary"><span class="property">Email: </span>{{details.email}}</p>
          <p style="font-size:0.8rem;" class="text-secondary"><span class="property">Company : </span>{{details.companyname}}</p>
@@ -812,7 +984,9 @@
      </div>
      
    </div>
+   
  </div>
+ <button style="float:right;" class="btn btn-primary share-btn" onclick="screen()" type="button">Share</button>
 {% elif theme == 5 %}
 
 <style>
@@ -886,8 +1060,55 @@
   .card .content span:nth-child(3){
     font-size:12px;
   }
+  
+.button-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  padding: 0.5rem;
+  opacity: 0;
+  animation: fadeInUp 0.5s forwards;
+}
+.button-container button {
+  margin-top: 5px;
+      padding: 10px 20px;
+      border-radius: 5px;
+      font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+.button-container button:hover {
+  background-color: #ccc;
+}
+
+
+.animated {
+  animation-duration: 0.3s;
+  animation-fill-mode: both;
+}
+
+.fadeInUp {
+  animation-name: fadeInUp;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 100%, 0);
+  }
+
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+.hidden {
+  display: none;
+  animation-name: fadeInUp;
+}
+
   </style>
-  <div class="container">
+  <div class="container" id="image">
     <div class="card">
         <div class="content">
             <span>{{details.name}}</span>
@@ -895,7 +1116,7 @@
             <span>{{details.email}}</span>
         </div>
         <img style="display:inline-block;position:absolute;left:5px;bottom:20px;" width="50px"  src="" style="width: 3.2rem;"  alt="QR Code" id="qr">
-        <img style="display:inline-block;position:absolute;left:50px;bottom:20px;margin:0 1rem;" width="50px" src="../../{{details.companylogo}}" alt="">   
+        <img style="display:inline-block;position:absolute;left:50px;bottom:20px;margin:0 1rem;" width="50px" src="/media/{{details.companylogo}}" alt="">   
         <div class="content">
             <span>{{details.companyname}}</span>
             <span>{{details.companycontact}}</span>
@@ -903,6 +1124,7 @@
         </div>
     </div>
   </div>
+  <button style="float:right;" class="btn btn-primary share-btn" onclick="screen()" type="button">Share</button>
   {% endif %}
   {% if not message %}
 {% if theme == 6 %}
@@ -1191,15 +1413,60 @@ i {
 /* add some responsiveness*/
 
 @media screen and (max-width: 560px) {}
+.button-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  padding: 0.5rem;
+  opacity: 0;
+  animation: fadeInUp 0.5s forwards;
+}
+.button-container button {
+  margin-top: 5px;
+      padding: 10px 20px;
+      border-radius: 5px;
+      font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.button-container button:hover {
+  background-color: #ccc;
+}
+
+
+.animated {
+  animation-duration: 0.3s;
+  animation-fill-mode: both;
+}
+
+.fadeInUp {
+  animation-name: fadeInUp;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 100%, 0);
+  }
+
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+.hidden {
+  display: none;
+  animation-name: fadeInUp;
+}
+
 </style>
-<div class="business-hor">
+<div class="business-hor" id="image">
     <div id="back">
         <div>
           <img style="display:inline-block;position:absolute;left:70px;bottom:60px;" width="60px"  src="" style="width: 3.2rem;"  alt="QR Code" id="qr">
-         
-         
             <p><span>{{details.companyname}}</span></p>
-            <img style="display:inline-block;position:absolute;left:50px;top:80px;margin:0 1rem;" width="80px" src="../../{{details.companylogo}}" alt="">   
+            <img style="display:inline-block;position:absolute;left:50px;top:80px;margin:0 1rem;" width="80px" src="/media/{{details.companylogo}}" alt="">   
         </div>
         <div class="details">
             <div class="name">
@@ -1242,7 +1509,10 @@ i {
                 </div>
             </div>
         </div>
+        
     </div>
+    </div>
+    <button style="float:right;" class="btn btn-primary share-btn" onclick="screen()" type="button">Share</button>
     
     {% elif theme == 7 %}
     <style>
@@ -1304,7 +1574,7 @@ a {
   margin-right: auto;
  }
 
-.biz-pic-drew { background-image: url('../../{{details.companylogo}}'); }
+.biz-pic-drew { background-image: url('/media/{{details.companylogo}}'); }
 
 .biz-words-container { margin-top: 120px; }
 
@@ -1441,9 +1711,56 @@ a {
 @media screen and (max-width: 320px) {
 .biz-card-a, .biz-card-b { margin-left: 5%; }
 }
+.button-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  padding: 0.5rem;
+  opacity: 0;
+  animation: fadeInUp 0.5s forwards;
+}
+.button-container button {
+  margin-top: 5px;
+      padding: 10px 20px;
+      border-radius: 5px;
+      font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+.button-container button:hover {
+  background-color: #ccc;
+}
+
+
+.animated {
+  animation-duration: 0.3s;
+  animation-fill-mode: both;
+}
+
+.fadeInUp {
+  animation-name: fadeInUp;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 100%, 0);
+  }
+
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+.hidden {
+  display: none;
+  animation-name: fadeInUp;
+}
+
+
     </style>
-    <div class="center-container">
-      <div class="inner-card-container">
+    <div class="center-container" >
+      <div class="inner-card-container" id="image">
         <div class="bizzy-card-container">
 
           <div class="biz-card-a">
@@ -1483,7 +1800,9 @@ a {
         <!--bizzy-card-container-->
       </div>
       <!--inner-card-container-->
+      
   </div>
+  <button style="float:right;" class="btn btn-primary share-btn" onclick="screen()" type="button">Share</button>
   {% elif theme == 8 %}
   <style>
     .business-card {
@@ -1612,24 +1931,167 @@ a {
       text-decoration: none;
    }
     
-  </style>
-  <div class='business-card'>
-    <div class='bc__logo'>
-      <img width="80px" src="../../{{details.companylogo}}" alt="">
-      <h2>{{details.name}}</h2> <br>
-      <h6 style="position:absolute;right:15px;;color:#fff">{{details.role}}</h6> <br>
-      <h6 style="position:absolute;right:15px;;color:#fff">{{details.email}}</h6> <br>
-      <h6 style="position:absolute;right:15px;;color:#fff">{{details.companyname}}</h6> <br>
-      <h6 style="position:absolute;right:15px;;color:#fff">{{details.companycontact}}</h6> <br>
-    </div>
-    <div class='bc__tagline'>
-      <img style="position:absolute;right:50px;bottom:10px;z-index:111;" width="40px"  src=""  alt="QR Code" id="qr">
-    </div>
-  </div>
+.button-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  padding: 0.5rem;
+  opacity: 0;
+  animation: fadeInUp 0.5s forwards;
+}
+.button-container button {
+  margin-top: 5px;
+      padding: 10px 20px;
+      border-radius: 5px;
+      font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+.button-container button:hover {
+  background-color: #ccc;
+}
+
+
+.animated {
+  animation-duration: 0.3s;
+  animation-fill-mode: both;
+}
+
+.fadeInUp {
+  animation-name: fadeInUp;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 100%, 0);
+  }
+
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+.hidden {
+  display: none;
+  animation-name: fadeInUp;
+}
+</style>
+  <div class='business-card' id="image">
+      <div class='bc__logo'>
+        <img width="80px" src="/media/{{details.companylogo}}" alt="">
+        <h2>{{details.name}}</h2> <br>
+        <h6 style="position:absolute;right:15px;;color:#fff">{{details.role}}</h6> <br>
+        <h6 style="position:absolute;right:15px;;color:#fff">{{details.email}}</h6> <br>
+        <h6 style="position:absolute;right:15px;;color:#fff">{{details.companyname}}</h6> <br>
+        <h6 style="position:absolute;right:15px;;color:#fff">{{details.companycontact}}</h6> <br>
+      </div>
+      <div class='bc__tagline'>
+        <img style="position:absolute;right:300px;bottom:10px;z-index:111;" width="40px"  src=""  alt="QR Code" id="qr">
+      </div>
+   </div>
+  <button style="float:right;" class="btn btn-primary share-btn" onclick="screen()" type="button">Share</button>
+  
+
  {% endif %}
 {% endif %}
+
+
 <script>
   document.getElementById("qr").src = "https://api.qrserver.com/v1/create-qr-code/?size=150x150&data="+window.location.href
   console.log(qr)
+  function screen() {
+    const render = node =>
+      domtoimage.toPng(node)
+        .then(dataUrl => {
+          console.log(performance.now() - pf)
+          const img = new Image();
+          img.src = dataUrl;
+          showButtons(dataUrl);
+          //console.log(img.src)
+         
+        })
+        .catch(error =>
+          console.error('oops, something went wrong!', error)
+        );
+
+    const image = document.getElementById('image');
+
+    var pf = performance.now();
+    render(image);
+  }
+  var buttonContainer = null;
+  function showButtons(imageUrl) {
+    // Create buttons
+    if (!buttonContainer) {
+      // Create the button container
+      buttonContainer = document.createElement('div');
+      buttonContainer.classList.add('button-container');
+
+      // Create buttons
+      var copyButton = createButton('Copy URL', 'btn-primary');
+      var whatsappButton = createButton('Share on WhatsApp', 'btn-success');
+      var instagramButton = createButton('Share on Instagram', 'btn-danger');
+
+      // Append buttons to the container
+      buttonContainer.appendChild(copyButton);
+      buttonContainer.appendChild(whatsappButton);
+      buttonContainer.appendChild(instagramButton);
+
+      // Append the button container to the document body
+          
+      // Append the container after the "Share" button
+      var shareButton = document.querySelector('.share-btn');
+      shareButton.insertAdjacentElement('afterend', buttonContainer);
+
+
+      copyButton.addEventListener('click', function () {
+        copyUrlToClipboard(imageUrl);
+      });
+
+      whatsappButton.addEventListener('click', function () {
+        shareOnWhatsApp(imageUrl);
+      });
+
+      instagramButton.addEventListener('click', function () {
+        shareOnInstagram(imageUrl);
+      });
+    }
+    else{
+      buttonContainer.classList.toggle('hidden');
+  }
+}
+
+  function createButton(text, className) {
+    var button = document.createElement('button');
+    button.innerText = text;
+    button.classList.add('btn', className);
+    return button;
+  }
+  function copyUrlToClipboard(url) {
+    // Copy the URL to the clipboard
+    navigator.clipboard.writeText(url)
+      .then(() => {
+        alert('URL copied to clipboard');
+      })
+      .catch(error => {
+        console.error('Failed to copy URL to clipboard', error);
+      });
+  }
+  
+  function shareOnWhatsApp(url) {
+    // Open WhatsApp with the image URL
+    window.open('https://api.whatsapp.com/send?text=' + encodeURIComponent(url));
+  }
+  
+  function shareOnInstagram(url) {
+    // Open Instagram with the image URL
+    window.open('https://www.instagram.com/share?url=' + encodeURIComponent(url));
+  }
+  
+  
+  
+  
+  
 </script>
     {% endblock content %}

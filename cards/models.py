@@ -10,7 +10,7 @@ class Detail(models.Model):
     companyname = models.CharField(max_length=100)
     companyemail = models.EmailField()
     companycontact = models.CharField(max_length=100)
-    companylogo = models.ImageField(upload_to='static/cards/images/')
+    companylogo = models.ImageField(upload_to='images/')
     website = models.CharField(max_length=100)
     address = models.CharField(max_length=100)
     
