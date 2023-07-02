@@ -1,1 +1,1 @@
-web: gunicorn roomchat.wsgi --log-file -
+web: gunicorn CardGenerator.wsgi --log-file -
