@@ -16,3 +16,11 @@ def contact(request):
     return render(request,'home/contact.html')
 def about(request):
     return render(request,'home/about.html')
+
+def previous(req):
+    if 'username' in req.session and  req.session.get('username') is not None:
+        cards = Detail.objects.filter(created_for=User.objects.get(username=req.session['username']))
+        return render(req,'home/previous.html',{
+            'cards':cards
+        } )
+    return render(req,'home/previous.html')

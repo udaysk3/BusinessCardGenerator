@@ -1,0 +1,26 @@
+{% extends 'home/base.html' %}
+
+{% block content %}
+
+
+<section>
+        <h3 class="m-5">Your Previous Designs</h3>
+        {% if cards %}
+        {% for item in cards %}
+    <div class="cards" style="width: 18rem;display:inline-block;margin:2rem;border:0.5px solid;padding:1rem;">
+        <img class="cards-img-top" src="..." alt="Cards image cap">
+        <div class="cards-body">
+          <h5 class="cards-title">Design {{forloop.counter}}</h5>
+          <p class="cards-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+          <a href="/cardsview/{{item.id}}/1" class="btn" id="whatsapp" style="background-color: #008445;margin:1rem;color:#fff;margin: 1rem 3rem;">Link {{forloop.counter}} </a>
+        </div>
+      </div>
+      {% endfor %}
+      {% else %}
+      <p style="margin: 2rem;"> You have not designed any card yet.</p>
+       {% endif %}
+</section>
+
+
+
+{% endblock content %}
