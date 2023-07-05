@@ -18,7 +18,7 @@
 <div class="container">
     <form action=" {% url 'cards:generate' %} " method="post"  enctype="multipart/form-data">
         {% csrf_token %}
-      <div class="container-flex" style="display: flex;justify-content:space-around;">
+      <div class="container-flex" style="display: flex;flex-direction:column;justify-content:space-around;">
         <div>
         <h2 class="h4 mt-2">Enter Your Details : </h2>
        
@@ -38,9 +38,15 @@
                 placeholder="Enter your role " name="role">
         </div>
         <div class="form-group">
-            <label for="contact"> Contact No:</label>
-            <input type="text" class="form-control" id="contact" required
-                placeholder="Enter Contact Number" name="contact">
+            <label for="phone"> Phone No:</label>
+            <input type="text" class="form-control" id="phone" required
+                placeholder="Enter Phone Number" name="phone">
+        </div>
+        <div class="form-group">
+            <label for="profileimage">Profile Image :</label>
+            <div class="mb-3">
+                <input class="form-control" name="profileimage" required type="file" id="formFile">
+              </div>
         </div>
     
   
@@ -79,16 +85,6 @@
                 placeholder="Enter company name" name="companyname">
         </div>
         <div class="form-group">
-            <label for="email">Company Email Id:</label>
-            <input type="email" class="form-control" id="email" required
-                placeholder="Enter Company Email Id" name="companyemail">
-        </div>
-        <div class="form-group">
-            <label for="contact">Company Contact No:</label>
-            <input type="text" class="form-control" id="contact" required
-                placeholder="Enter Company Contact Number" name="companycontact">
-        </div>
-        <div class="form-group">
             <label for="contact">Company Logo:</label>
             <div class="mb-3">
                 <input class="form-control" name="logo" required type="file" id="formFile">
@@ -100,7 +96,7 @@
                 placeholder="Enter Company Website" name="website">
         </div>
         <div class="form-group">
-            <label for="contact">Company Address:</label>
+            <label for="contact">Address:</label>
             <input type="text" class="form-control" id="contact" 
                 placeholder="Enter Company Address" name="address">
         </div>

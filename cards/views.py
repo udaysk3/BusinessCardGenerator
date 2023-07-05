@@ -9,22 +9,22 @@ from bs4 import BeautifulSoup
 def generate(request):
     if request.session.get('username',None) and request.method == 'POST' :
         name = request.POST['name']
+        profileimage = request.FILES['profileimage']
         email = request.POST['email']
         role = request.POST['role']
-        contact = request.POST['contact']
+        phone = request.POST['phone']
         companyname = request.POST['companyname']
-        companyemail = request.POST['companyemail']
-        companycontact =  request.POST['companycontact']
         companylogo = request.FILES['logo']
         website = request.POST['website']   
         address = request.POST['address']
         created_for = User.objects.get(username=request.session['username'])
-        details = Detail(name=name,email=email,role=role,contact=contact,companyname=companyname,companyemail=companyemail,companycontact=companycontact,companylogo=companylogo,website=website,address=address,created_for=created_for)
+        details = Detail(name=name,email=email,role=role,phone=phone,profileimage = profileimage,companyname=companyname,companylogo=companylogo,website=website,address=address,created_for=created_for)
         details.save()
         print(details.id)
             # return view(request=request,id=details.id,theme=1)
         messages.success(request,'Card Generated Successfully')
-        return render(request,'cards/cards.html',{'message' : "Card Generated Successfully",'details':details,'username':name,'id':details.id,'theme':1})
+        
+        return render(request,'cards/card1.html',{'message' : "Card Generated Successfully",'details':details,'username':name,'id':details.id,'theme':1})
     else:
         return render(request,'user/signin.html',{'message' : "You need to sigin to generate Cards"})
 
@@ -45,15 +45,5 @@ def view(req,id,theme):
         else:
             messages.error(req,'You need to be a paid member to use this theme')
             return redirect('payment:process_payment')
-    # from GrabzIt import GrabzItClient
-    # with open('templates/cards/cards.html', 'r') as file:
-    #             html_content = file.read()
-    #             soup = BeautifulSoup(html_content, 'html.parser')
-    #             card_container = soup.find('div', class_='front-side') 
-    #             card_html = card_container.prettify()  # Convert to a string preserving HTML formatting
-    # print(card_html)
-    # grabzIt = GrabzItClient.GrabzItClient("ZGY1MWVhN2Y5OWFmNDRhYjliMDg1YTYxZTQxYzVkOTA=", "QGo/Oj8/PxxiP2Q4PxQLAT8/Pz8/P3U/P24/PxQsJT8=")
-    # grabzIt.HTMLToImage(card_html) 
-    # grabzIt.SaveTo("media/images/sample.jpg") 
-    return render(req,'cards/cards.html',{'username':username,'details':details,'id':id,'theme':theme})
+    return render(req,'cards/card1.html',{'username':username,'details':details,'id':id,'theme':theme})
 
