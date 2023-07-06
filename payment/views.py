@@ -49,12 +49,12 @@ def payment_done(request):
     user.save()
     messages.success(request,'Payment Successful')
     user = User.objects.get(username=request.session['username'])
-    return render(request,'cards/cards.html',{'username':request.session['username'],'details':details,'id':details.id,'theme':6})
+    return render(request,'cards/generate.html',{'username':request.session['username'],'details':details,'id':details.id,'theme':6})
 
 
 @csrf_exempt
 def payment_canceled(request):
     details = Detail.objects.filter(email=request.session['username']).first()
     messages.error(request,'Payment Cancelled')
-    return render(request,'cards/cards.html',{'username':request.session['username'],'details':details,'id':details.id,'theme':1})
+    return render(request,'cards/generate.html',{'username':request.session['username'],'details':details,'id':details.id,'theme':1})
 

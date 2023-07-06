@@ -48,7 +48,7 @@ def view(req,id,theme):
     username = details.name
     user = User.objects.get(username=req.session['username'])
     print(user)
-    if theme >5 and theme <10:
+    if theme >2 and theme <10:
         if user.paid_member==True:
             return render(req,'cards/card'+str(theme)+'.html',{'username':username,'details':details,'id':id,'theme':theme})
         else:
