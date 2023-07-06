@@ -16,7 +16,7 @@
     }
 </style>
 <div class="container">
-    <form action=" {% url 'cards:generate' %} " method="post"  enctype="multipart/form-data">
+    <form action=" {% url 'cards:generateForm' %} " method="post"  enctype="multipart/form-data">
         {% csrf_token %}
       <div class="container-flex" style="display: flex;flex-direction:column;justify-content:space-around;">
         <div>

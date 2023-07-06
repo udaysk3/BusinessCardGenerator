@@ -1,7 +1,51 @@
-{% extends 'cards/base.html' %}
+{% extends 'home/base.html' %}
 {% load static %}
 
-{% block sidebar %}
+{% block content %}
+<style>
+  .block-container{
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    padding: 1rem;
+    margin: 1rem;
+  }
+  .block {
+    box-shadow: 5px 5px 5px rgb(93, 93, 93);
+    border-radius: 30px;
+    background: #fff;
+    width:300px;
+  }
+  
+  .block-body {
+    background: #fff;
+    padding: 0.5rem;
+  }
+  
+  .block-footer {
+    background: #171717;
+    border-bottom-left-radius: 30px !important;
+    border-bottom-right-radius: 30px !important;
+  }
+  
+  .block-header {
+    border-radius: 30px !important;
+    border: 0px;
+    background: #fff;
+  }
+  
+  .block-header img {
+    border-radius: 30px;
+  
+  }
+
+  .block-text{
+    font-size: 1rem;
+  }
+ .row{
+  display: inline-block;
+ }
+</style>
 {% for message in messages %}
 <div class="container-fluid p-0 m-0">
   <div class="alert {{ message.tags }} alert-dismissible m-0 text-center" role="alert" >
@@ -12,95 +56,99 @@
   </div>
 </div>
 {% endfor %}
-<style>
-    .components li{
-        margin:0.5rem 0;
-        cursor: pointer;
-    }
-.components li:hover {
-    background-color: #090909;
-    color: #d5d5d5;
-}
-</style>
+<h3>Free Templates</h3>
+<div class="block-container">
+ 
 
-
-<div class="wrapper d-flex align-items-stretch">
-    
-    <nav id="sidebar" class="active">
-        <h5><a href="/"  class="logo">CG</a></h5>
-
-        <h6><a href="/"  class="text-light " style="font-size:small; border-bottom:2px solid #fff;pointer-events: none">Free templates</a></h6>
-<ul class="list-unstyled components mb-5">
-
-    <li class="active">
-        <a href="{% url 'cards:view' id=id theme=1 %}">
-        <img width="80px" src="https://static.vecteezy.com/system/resources/previews/001/409/551/original/gradient-yellow-orange-curve-business-card-template-free-vector.jpg" alt="">
-       Template1  </a></li>
-    <li class="active">
-      <a href="{% url 'cards:view' id=id theme=2 %}">
-        <img width="80px" src="https://static.vecteezy.com/system/resources/previews/001/409/551/original/gradient-yellow-orange-curve-business-card-template-free-vector.jpg" alt="">
-       Template2 </a> </li>
-    <li class="active">
-      <a href="{% url 'cards:view' id=id theme=3 %}">
-        <img width="80px" src="https://static.vecteezy.com/system/resources/previews/001/409/551/original/gradient-yellow-orange-curve-business-card-template-free-vector.jpg" alt="">
-       Template3 </a>  </li>
-    <li class="active">
-      <a href="{% url 'cards:view' id=id theme=4 %}">
-        <img width="80px" src="https://static.vecteezy.com/system/resources/previews/001/409/551/original/gradient-yellow-orange-curve-business-card-template-free-vector.jpg" alt="">
-       Template4 </a> </li>
-    <li class="active">
-      <a href="{% url 'cards:view' id=id theme=5 %}">
-        <img width="80px" src="https://static.vecteezy.com/system/resources/previews/001/409/551/original/gradient-yellow-orange-curve-business-card-template-free-vector.jpg" alt="">
-       Template5 </a> </li>
-
-        <h6><a href="/"  class="text-light " style="font-size:small;border-bottom:2px solid #fff;pointer-events: none">Premium templates</a></h6>
-<ul class="list-unstyled components mb-5">
-
-    <li class="active">
-      <a href="{% url 'cards:view' id=id theme=6 %}">
-        <img width="80px" src="https://static.vecteezy.com/system/resources/previews/001/409/551/original/gradient-yellow-orange-curve-business-card-template-free-vector.jpg" alt="">
-       Template1 </a>  </li>
-    <li class="active">
-      <a href="{% url 'cards:view' id=id theme=7 %}">
-        <img width="80px" src="https://static.vecteezy.com/system/resources/previews/001/409/551/original/gradient-yellow-orange-curve-business-card-template-free-vector.jpg" alt="">
-       Template2 </a> </li>
-    <li class="active">
-      <a href="{% url 'cards:view' id=id theme=8 %}">
-        <img width="80px" src="https://static.vecteezy.com/system/resources/previews/001/409/551/original/gradient-yellow-orange-curve-business-card-template-free-vector.jpg" alt="">
-       Template3 </a>  </li>
-    <li class="active">
-      <a href="{% url 'cards:view' id=id theme=7 %}">
-        <img width="80px" src="https://static.vecteezy.com/system/resources/previews/001/409/551/original/gradient-yellow-orange-curve-business-card-template-free-vector.jpg" alt="">
-       Template4 </a> </li>
-    <li class="active">
-      <a href="{% url 'cards:view' id=id theme=7 %}">
-        <img width="80px" src="https://static.vecteezy.com/system/resources/previews/001/409/551/original/gradient-yellow-orange-curve-business-card-template-free-vector.jpg" alt="">
-       Template5 </a> </li>
-
-
-  <li class="active">
-    <a href="/"><span class="fa fa-home"></span> <img src="" alt="">Home</a>
-  </li>
-  <li>
-      <a href="/about"><span class="fa fa-user"></span> <img src="" alt="">About</a>
-  </li>
-  <li>
-    <a href="/contact"><span class="fa fa-sign-out"></span> <img src="" alt="">Logout</a>
-  </li>
-</ul>
-
-
-
-<script>
-</script>
-{% endblock sidebar %}
-
-{% block content %}
-<div class="card" style="width: 50rem;margin:0 auto;; background:none;">
-  <div class="card-body">
-    <h5 class="card-title">Card title</h5>
-    <p class="card-text">Your Cards are Ready! Choose any Template</p>
-    <a href="#" class="btn btn-primary">View Card</a>
+<a target="_blank" href="{% url 'cards:view' id 1  %}">
+  <div class="container">
+    <div class="row">
+      <div class="block text-center ">
+        <div class="block-header p-0">
+          
+        </div>
+        <div class="block-body">
+          <h5 class="block-title">Template 1</h5>
+          <img width="250px" height="150px" src="{% static 'cards/images/view1.png' %} " alt="">
+          <p class="block-text">Your data will be populated on this template</p>
+  
+        </div>
+        <div class="block-footer text-muted">
+          Try it
+        </div>
+      </div>
+  
+    </div>
   </div>
+  </a>
+  <a target="_blank" href="{% url 'cards:view' id 2  %}">
+    <div class="container">
+      <div class="row">
+        <div class="block text-center ">
+          <div class="block-header p-0">
+            
+          </div>
+          <div class="block-body">
+            <h5 class="block-title">Template 2</h5>
+            <img width="250px" height="150px" src="{% static 'cards/images/view2.png' %} " alt="">
+            <p class="block-text">Your data will be populated on this template</p>
+    
+          </div>
+          <div class="block-footer text-muted">
+            Try it
+          </div>
+        </div>
+    
+      </div>
+    </div>
+    </a>
 </div>
+<h3>Paid Templates</h3>
+<div class="block-container"> 
+ 
+
+<a target="_blank" href="{% url 'cards:view' id 3  %}">
+  <div class="container">
+    <div class="row">
+      <div class="block text-center ">
+        <div class="block-header p-0">
+          
+        </div>
+        <div class="block-body">
+          <h5 class="block-title">Template 1</h5>
+          <img width="250px"  height="150px" src="{% static 'cards/images/view3.png' %} " alt="">
+          <p class="block-text">Your data will be populated on this template</p>
+  
+        </div>
+        <div class="block-footer text-muted">
+          Try it
+        </div>
+      </div>
+  
+    </div>
+  </div>
+  </a>
+  <a target="_blank" href="{% url 'cards:view' id 4  %}">
+    <div class="container">
+      <div class="row">
+        <div class="block text-center ">
+          <div class="block-header p-0">
+            
+          </div>
+          <div class="block-body">
+            <h5 class="block-title">Template 2</h5>
+            <img width="250px"  height="150px" src="{% static 'cards/images/view4.png' %} " alt="">
+            <p class="block-text">Your data will be populated on this template</p>
+    
+          </div>
+          <div class="block-footer text-muted">
+            Try it
+          </div>
+        </div>
+    
+      </div>
+    </div>
+    </a>
+</div>
+</body>
 {% endblock %}

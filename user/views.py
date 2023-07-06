@@ -43,7 +43,6 @@ def signin(request):
         user = authenticate(username=username, password=password)
         if user is not None:
             request.session['username'] = username
-             
             return render(request,'home/index.html')
         return render(request,'user/signin.html',{'message':'Incorrect Username or Password'})
     return render(request,'user/signin.html')

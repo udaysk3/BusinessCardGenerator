@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+{% load static %}
+<html  lang="en" class="notranslate" translate="no">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Template 2</title>
+<!-- FONTS ONLINE -->
+<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300italic,400italic,600,600italic,700,700italic,800,800italic,300' rel='stylesheet' type='text/css'>
+
+<!--MAIN STYLE-->
+<link rel="stylesheet" type="text/css" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+<link href=" {% static 'cards/card1/css/font.css' %} " rel="stylesheet" type="text/css">
+<link href=" {% static 'cards/card1/css/fontello.css' %} " rel="stylesheet" type="text/css">
+<link href=" {% static 'cards/card1/css/base.css' %} " rel="stylesheet" type="text/css">
+<link href=" {% static 'cards/card1/css/skeleton.css' %} " rel="stylesheet" type="text/css">
+<link href=" {% static 'cards/card1/css/main.css' %} " rel="stylesheet" type="text/css">
+<link href=" {% static 'cards/card1/css/magnific-popup.css' %} " rel="stylesheet"  />
+
+<link href=" {% static 'cards/card2/css/animate.css' %} " rel="stylesheet" type="text/css">
+<link href=" {% static 'cards/card2/css/bootstrap.min.css' %} " rel="stylesheet" type="text/css">
+<link href=" {% static 'cards/card2/css/font-awesome.min.css' %} " rel="stylesheet" type="text/css">
+<link href=" {% static 'cards/card2/css/main.css' %} " rel="stylesheet" type="text/css">
+<link href=" {% static 'cards/card2/css/style.css' %} " rel="stylesheet" type="text/css">
+<link href=" {% static 'cards/card2/css/responsive.css' %} " rel="stylesheet" type="text/css">
+
+
+<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+<!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+
+<!-- Page Wrap -->
+<div id="wrap"> 
+  
+  <!-- Menu Link -->
+  <div class="nav-menu"> <a href="#." class="cd-bouncy-nav-trigger"><i class="ion-navicon"></i></a> </div>
+  
+  <!-- Menu Overlay -->
+  <div class="cd-bouncy-nav-modal">
+    <nav>
+      <ul class="cd-bouncy-nav">
+        <li><a href="{% url 'cards:generate' id %}"><i class="ion-ios-home"></i> GoBack</a></li>
+        <li><a href="#contact"><i class="ion-paper-airplane"></i> Contact</a></li>
+      </ul>
+    </nav>
+    <a href="#." class="cd-close">Close modal</a> </div>
+    
+    
+    <!-- Profile -->
+  <div class="profile animated bounceInUp">
+    <div class="container">
+      <div class="profile-in">
+      
+      <!-- Avatar -->
+        <div class="text-center">
+          <div class="avatar"> 
+            <img  width="200px" class="images" src="/media/{{details.profileimage}}"> </div>
+        </div>
+        <h1>Hello, I am <strong style="color:#fff">{{details.name}}</strong> Passionate <span>{{details.role}}</span></h1>
+        <hr>
+        <p>Mobile Number : <span style="color:red" >{{details.phone}} </span> </p>
+        <p>Email : <span style="color:red" >{{details.email}} </span> </p>
+        <p style="display:inline-block">company : <span style="color:red" >{{details.companyname}} </span> </p>
+        <img style="display:inline-block" width="100px" src="/media/{{details.companylogo}}"> 
+        <p>Webiste : <span style="color:red" >{{details.website}} </span> </p>
+        <p>Address : <span style="color:red" >{{details.address}}</ </span> <p>
+          <div class="aboutSocial">
+            <p>Share Now : </p>
+            <ul>
+                <li><a href="#" id="twitter" target="_blank"><i class="icon-twitter"></i></a></li>
+                <li><a href="#" id="facebook" target="_blank"><i class="icon-facebook"></i></a></li>
+                <li><a href="#" id="linkedin" target="_blank"><i class="icon-linkedin"></i></a></li>
+                <li><a href="#" id="whatsapp" target="_blank"><i class="icon-w">W</i></a></li>
+                <br> <br>
+                <li><img src="" style="width: 10.2rem"  alt="QR Code" id="qr"></li>
+            </ul>
+            <br>
+          </div>
+      </div>
+    </div>
+    
+  </div>
+  
+</div>
+
+
+<section id="contact" style="background:#fff;" class="offset section">
+
+
+  <!--Inner content-->
+  <div class="innerContent">
+
+  <!--Container-->
+  <div class="container clearfix">
+
+    <div class="sixteen columns">
+    <h1 class="titleBig">contact</h1>
+    </div>
+
+  
+
+      <div class="sixteen columns contactForm">
+        <p>You can send a message to  me</p>
+
+        <div class="cForm">
+        <form method="post" enctype="text/plain" action="mailto:someone@example.com">
+
+
+          <p>
+          <label for="name">Name <span class="required">*</span></label>
+              <input type="text" name="name" id="name">
+          </p>
+
+          <p>
+          <label for="email">Email <span class="required">*</span></label>
+              <input type="text" name="email" id="email">
+          </p>
+
+
+            <p>
+            <label for="subject">Subject</label>
+                <input type="text" name="subject" id="subject">
+            </p>
+
+
+
+
+            <p>
+            <label for="subject">Message <span class="required">*</span></label>
+       <textarea name="message" id="message" cols="45" rows="10"></textarea>
+      </p>
+              <div class="fBtn"><button id="submit" class="regButton"><i class="icon-paper-plane"></i>Send message</button></div>
+            </form>
+        <div id="success"><h2>Your message has been sent. Thank you!</h2></div>
+        <div id="error"><h2>Sorry your message can not be sent.</h2></div>
+
+
+      </div>			
+
+
+      </div>
+
+
+
+
+      </div>
+      <!--End container-->
+
+
+    </div>
+    <!--End inner content-->
+
+    </section>
+
+      <!--End contact section-->
+      
+      
+
+  <!--Footer-->				
+    <footer class="footer text-white offset" >
+
+      <!--Bottom footer-->
+      <div class="footerholder" >
+          <!--Container-->
+          <div class="container clearfix">
+
+            <div class="eight columns">
+
+              <p style="color:#fff">Thank you</p>
+            </div>
+
+
+              <div class="eight columns ">
+            <ul class="socialsFooter">
+              <li><a href="#" id="twitter2" target="_blank"><i class="icon-twitter"></i></a></li>
+															<li><a href="#" id="facebook2" target="_blank"><i class="icon-facebook"></i></a></li>
+															<li><a href="#" id="linkedin2" target="_blank"><i class="icon-linkedin"></i></a></li>
+															<li><a href="#" id="whatsapp2" target="_blank"><i class="icon-w">W</i></a></li>
+
+
+            </ul>
+
+              </div>
+
+      </div>
+        <!--End container-->
+      </div>
+        <!--End bottom footer-->
+
+
+    </footer>
+
+<!--End footer-->
+
+    
+
+
+</div>
+<!--ENd wrapper-->
+
+
+
+
+
+<!-- Wrap End --> 
+
+<script src=" {% static 'cards/card2/js/jquery-1.11.0.min.js' %} "></script> 
+<script src=" {% static 'cards/card2/js/bootstrap.min.js' %}"></script> 
+<script src=" {% static 'cards/card2/js/counter.js' %} "></script> 
+<script src=" {% static 'cards/card2/js/jquery.prettyPhoto.js' %} "></script> 
+<script src=" {% static 'cards/card2/js/main.js' %} "></script>
+<script>
+  document.getElementById("qr").src = "https://api.qrserver.com/v1/create-qr-code/?size=150x150&data="+window.location.href;
+	document.getElementById("twitter").href = `https://twitter.com/intent/tweet?url=${window.location.href}&text='My Profile'`;
+	document.getElementById("facebook").href = `https://www.facebook.com/sharer/sharer.php?u=${window.location.href}`;
+	document.getElementById("linkedin").href = `https://www.linkedin.com/sharing/share-offsite/?url=${window.location.href}`;
+	document.getElementById("whatsapp").href = `https://api.whatsapp.com/send?text=${window.location.href}`;
+	
+	document.getElementById("twitter2").href = `https://twitter.com/intent/tweet?url=${window.location.href}&text='My Profile'`;
+	document.getElementById("facebook2").href = `https://www.facebook.com/sharer/sharer.php?u=${window.location.href}`;
+	document.getElementById("linkedin2").href = `https://www.linkedin.com/sharing/share-offsite/?url=${window.location.href}`;
+	document.getElementById("whatsapp2").href = `https://api.whatsapp.com/send?text=${window.location.href}`;
+</script>
+</body>
+</html>

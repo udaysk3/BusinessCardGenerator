@@ -9,18 +9,19 @@
     <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900" rel="stylesheet">
 		
 		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    
 		<link rel="stylesheet" href="{% static 'home/css/style.css' %}">
   </head>
 
   <style>
     .card{
       font-weight: 300;
-      font-size: 20px;;
+      font-size: 20px;
       background-color: rgb(115, 190, 195);
   }
 
   @media (max-width: 1000px) {
-    .card img{
+    .card .img{
       display: none;
   }
   .heading{
@@ -43,9 +44,9 @@
           <li>
             <a href="/previous"><span class="fa fa-sticky-note"></span>Previous Designs</a>
           </li>
-          <li>
+          {% comment %} <li>
             <a href="#"><span class="fa fa-cogs"></span> Services</a>
-          </li>
+          </li> {% endcomment %}
           <li>
             <a href="/contact"><span class="fa fa-paper-plane"></span> Contacts</a>
           </li>
