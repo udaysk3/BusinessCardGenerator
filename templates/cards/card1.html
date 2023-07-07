@@ -7,7 +7,44 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-
+<style>
+	.button-container {
+		display: flex;
+  
+		flex-direction: column;
+		padding: 0.5rem;
+		align-items: flex-end;
+		margin-top: 10px;
+	  }
+	  
+	  .button-container button {
+		margin-top: 5px;
+	  }
+	  .animated {
+		animation-duration: 0.3s;
+		animation-fill-mode: both;
+	  }
+	
+	  .fadeInUp {
+		animation-name: fadeInUp;
+	  }
+	
+	  @keyframes fadeInUp {
+		from {
+		  opacity: 0;
+		  transform: translate3d(0, 100%, 0);
+		}
+	
+		to {
+		  opacity: 1;
+		  transform: none;
+		}
+	  }
+	  .hidden {
+		display: none;
+		animation-name: fadeInUp;
+	  }
+</style>
 <title>Template 1</title>
 
 <!--Stylesheet-->
@@ -122,6 +159,8 @@
 				In Our Lovely Earth</h1>
 				
 			</div>
+
+			<button  class="btn btn-primary regButton" onclick="showButtons()" style="background-color: rgb(6, 144, 208);cursor:pointer;color:aliceblue;margin-bottom:2rem;">Share </button> <br>
 			<img src="" style="width: 3.2rem"  alt="QR Code" id="qr">
 
 		</div>
@@ -903,6 +942,76 @@
 	document.getElementById("facebook2").href = `https://www.facebook.com/sharer/sharer.php?u=${window.location.href}`;
 	document.getElementById("linkedin2").href = `https://www.linkedin.com/sharing/share-offsite/?url=${window.location.href}`;
 	document.getElementById("whatsapp2").href = `https://api.whatsapp.com/send?text=${window.location.href}`;
+	var buttonContainer = null;
+	function showButtons(imageUrl) {
+		// Create buttons
+		if (!buttonContainer) {
+		  // Create the button container
+		  buttonContainer = document.createElement('div');
+		  buttonContainer.classList.add('button-container');
+	
+		  // Create buttons
+		  var copyButton = createButton('Copy URL', 'btn-primary');
+		  var whatsappButton = createButton('Share on WhatsApp', 'btn-success');
+		  var instagramButton = createButton('Share on Instagram', 'btn-danger');
+	
+		  // Append buttons to the container
+		  buttonContainer.appendChild(copyButton);
+		  buttonContainer.appendChild(whatsappButton);
+		  buttonContainer.appendChild(instagramButton);
+	
+		  // Append the button container to the document body
+			  
+		  // Append the container after the "Share" button
+		  var shareButton = document.querySelector('.share-btn');
+		  shareButton.insertAdjacentElement('afterend', buttonContainer);
+	
+	
+		  copyButton.addEventListener('click', function () {
+			copyUrlToClipboard(imageUrl);
+		  });
+	
+		  whatsappButton.addEventListener('click', function () {
+			shareOnWhatsApp(imageUrl);
+		  });
+	
+		  instagramButton.addEventListener('click', function () {
+			shareOnInstagram(imageUrl);
+		  });
+		}
+		else{
+		  buttonContainer.classList.toggle('hidden');
+	  }
+	}
+	
+	  function createButton(text, className) {
+		var button = document.createElement('button');
+		button.innerText = text;
+		button.classList.add('btn', className);
+		return button;
+	  }
+	  function copyUrlToClipboard(url) {
+		// Copy the URL to the clipboard
+		navigator.clipboard.writeText(url)
+		  .then(() => {
+			alert('URL copied to clipboard');
+		  })
+		  .catch(error => {
+			console.error('Failed to copy URL to clipboard', error);
+		  });
+	  }
+	  
+	  function shareOnWhatsApp(url) {
+		// Open WhatsApp with the image URL
+		window.open('https://api.whatsapp.com/send?text=' + encodeURIComponent(url));
+	  }
+	  
+	  function shareOnInstagram(url) {
+		// Open Instagram with the image URL
+		window.open('https://www.instagram.com/share?url=' + encodeURIComponent(url));
+	  }
+	  
+	  
 </script>
 
 </body>

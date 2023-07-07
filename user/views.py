@@ -14,7 +14,7 @@ def signup(request):
         if password != confirm_password:
             return render(request,'user/signup.html',{'message':'Password does not match'})
         if User.objects.filter(username = username).exists():
-             return render(request,'user/signup.html',{'message':'User already exists with that username Please sign in'})
+             return render(request,'user/signin.html',{'message':'User already exists with that username Please sign in'})
         user = User.objects.create_user(username = username, password = password)
         subject =  ''' Welcome to Card Generator'''
         message =  '''
@@ -31,7 +31,7 @@ If you have any questions or need assistance along the way, our friendly support
         send_mail(subject, message, email_from, [username,])
         user.save()
         
-        return render(request,'user/signup.html',{'message':'User created successfully, Now you can sign in'})
+        return render(request,'user/signin.html',{'message':'User created successfully, Now you can sign in'})
     return render(request,'user/signup.html')
 
 def signin(request):
@@ -39,7 +39,7 @@ def signin(request):
         username = request.POST['username']
         password = request.POST['password']
         if not User.objects.filter(username = username).exists():
-             return render(request,'user/signin.html',{'message':"User doesn't exist Please sign up"})
+             return render(request,'user/signup.html',{'message':"User doesn't exist Please sign up"})
         user = authenticate(username=username, password=password)
         if user is not None:
             request.session['username'] = username
