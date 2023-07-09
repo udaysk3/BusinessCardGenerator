@@ -35,6 +35,7 @@ def generate(request,id):
         details = Detail.objects.get(id = id)
         messages.success(request,'Card Generated Successfully')
         return render(request,'cards/generate.html',{'message' : "Card Generated Successfully",'details':details,'username':details.name,'id':details.id,})
+    return render(request,'user/signin.html',{"message":"You need to sigin to generate Cards"})
 
 
 def form(req):

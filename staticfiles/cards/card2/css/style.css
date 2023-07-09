@@ -286,16 +286,9 @@ section {
 	position: relative;
 }
 .profile .avatar {
-	border: 20px solid rgba(255,255,255,0.2);
-	border-radius: 50%;
-	height: 322px;
-	width: 322px;
+	border: 10px solid rgba(255,255,255,0.2);
 	margin-bottom: 50px;
 	display: inline-block;
-}
-.profile .avatar img {
-	width: 100%;
-	border-radius: 50%;
 }
 .profile h1 {
 	color: #fff;
