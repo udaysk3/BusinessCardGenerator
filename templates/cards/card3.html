@@ -38,6 +38,11 @@
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
+    <style>
+        .hidden {
+            display: none;
+          }
+        </style>
 </head>
 
 <body>
@@ -136,7 +141,8 @@
                             </ul>
                         </nav>
 
-                        <a href="#" class="theme-btn mt-4">+ Share Page</a>
+                        
+                        
                     </div>
                 </div>
             </div>
@@ -154,9 +160,10 @@
                            <h3 class="wow fadeInLeft" data-wow-duration="1.5s" data-wow-delay="1.3s">I'm a <span class="profession"></span></h3>
                         </div>
                         {% comment %} <p class="wow fadeInLeft" data-wow-duration="1.5s" data-wow-delay="1.6s">Maborisum ipsum dolor seat ameat consecteturetel seat more be elite consecteture.</p> {% endcomment %}
-                        <a href="#" class="theme-btn wow fadeInLeft" data-wow-duration="1.5s" data-wow-delay="1.9s" onclick="sharePage()">+ Share Page</a>
+                        <button  onclick="showButtons()" class="share-btn theme-btn wow fadeInLeft" data-wow-duration="1.5s" data-wow-delay="1.9s">+ Share Page</button>
+                        <button class="share-btn theme-btn wow fadeInLeft download-btn" onclick="downloadPage()" style="background-color: rgb(6, 144, 208);cursor:pointer;color:aliceblue;margin-bottom:2rem;">Download</button> <br>
 
-                        <div class="social-profile">
+                        <div id="socialicons" class="social-profile">
                             <a href="#" class="wow fadeInLeft" id="facebook" data-wow-duration="1.2s" data-wow-delay="2.2s"><i class="fal fa-plus"></i>facebook</a>
                             <a href="#" class="wow fadeInLeft" id="twitter" data-wow-duration="1.2s" data-wow-delay="2.5s"><i class="fal fa-plus"></i>twitter</a>
                             <a href="#" class="wow fadeInLeft" id="linkedin" data-wow-duration="1.2s" data-wow-delay="2.7s"><i class="fal fa-plus"></i>linkedin</a>
@@ -784,20 +791,108 @@
         backSpeed: 50,
     });
 
-    function sharePage(){
-            navigator.clipboard.writeText(window.location.href);
-
-            // Alert the copied text
-            alert("Link Copied: " + window.location.href);
-    }
-    document.getElementById("qr").src = "https://api.qrserver.com/v1/create-qr-code/?size=150x150&data="+window.location.href;
-	document.getElementById("twitter").href = `https://twitter.com/intent/tweet?url=${window.location.href}&text='My Profile'`;
-	document.getElementById("facebook").href = `https://www.facebook.com/sharer/sharer.php?u=${window.location.href}`;
-	document.getElementById("linkedin").href = `https://www.linkedin.com/sharing/share-offsite/?url=${window.location.href}`;
-	document.getElementById("whatsapp").href = `https://api.whatsapp.com/send?text=${window.location.href}`;
     </script>
     <script src=" {% static 'cards/card3/js/active.js' %}"></script>
-    
+    <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+    <script>
+        document.getElementById("qr").src = "https://api.qrserver.com/v1/create-qr-code/?size=150x150&data="+window.location.href;
+        document.getElementById("twitter").href = `https://twitter.com/intent/tweet?url=${window.location.href}&text='My Profile'`;
+        document.getElementById("facebook").href = `https://www.facebook.com/sharer/sharer.php?u=${window.location.href}`;
+        document.getElementById("linkedin").href = `https://www.linkedin.com/sharing/share-offsite/?url=${window.location.href}`;
+        document.getElementById("whatsapp").href = `https://api.whatsapp.com/send?text=${window.location.href}`;
+        
+        var buttonContainer = null;
+        {% comment %} function showButtons() {
+            // Create buttons
+            if (!buttonContainer) {
+              // Create the button container
+              buttonContainer = document.createElement('div');
+              buttonContainer.classList.add('button-container');
+        
+              // Create buttons
+              var copyButton = createButton('Copy URL', 'btn-primary');
+              var whatsappButton = createButton('Share on WhatsApp', 'btn-success');
+              var instagramButton = createButton('Share on Instagram', 'btn-danger');
+          copyButton.style.backgroundColor = "#E2F6CA";
+          whatsappButton.style.backgroundColor = "#A2FF86";
+          instagramButton.style.backgroundColor = "#FF90BB";
+              // Append buttons to the container
+              buttonContainer.appendChild(copyButton);
+              buttonContainer.appendChild(whatsappButton);
+              buttonContainer.appendChild(instagramButton);
+        
+              // Append the button container to the document body
+                  
+              // Append the container after the "Share" button
+              var shareButton = document.querySelector('.share-btn');
+              shareButton.insertAdjacentElement('afterend', buttonContainer);
+                
+        
+              copyButton.addEventListener('click', function () {
+                copyUrlToClipboard(window.location.href);
+              });
+        
+              whatsappButton.addEventListener('click', function () {
+                shareOnWhatsApp(window.location.href);
+              });
+        
+              instagramButton.addEventListener('click', function () {
+                shareOnInstagram(window.location.href);
+              });
+            }
+            else{
+              buttonContainer.classList.toggle('hidden');
+          }
+        }
+        
+          function createButton(text, className) {
+            var button = document.createElement('button');
+            button.innerText = text;
+            button.classList.add('btn', className);
+            return button;
+          }
+          function copyUrlToClipboard(url) {
+            // Copy the URL to the clipboard
+            navigator.clipboard.writeText(url)
+              .then(() => {
+                alert('URL copied to clipboard');
+              })
+              .catch(error => {
+                console.error('Failed to copy URL to clipboard', error);
+              });
+          }
+          
+          function shareOnWhatsApp(url) {
+            // Open WhatsApp with the image URL
+            window.open('https://api.whatsapp.com/send?text=' + encodeURIComponent(url));
+          }
+          
+          function shareOnInstagram(url) {
+            // Open Instagram with the image URL
+            window.open('https://www.instagram.com/share?url=' + encodeURIComponent(url));
+          } {% endcomment %}
+          
+          function showButtons(){
+            document.getElementById("socialicons").classList.toggle("hidden");
+          }
+          	  
+	  function downloadPage() {
+        // Use html2canvas to capture the page as an image
+        html2canvas(document.body).then(function(canvas) {
+          // Convert the canvas to a data URL
+          var image = canvas.toDataURL();
+      
+          // Create an anchor element
+          var anchor = document.createElement('a');
+          anchor.href = image;
+          anchor.download = 'profile.png';
+      
+          // Trigger the download
+          anchor.click();
+        });
+        }
+        
+    </script>
 </body>
 
 </html>

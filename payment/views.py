@@ -24,10 +24,9 @@ from user.models import User
 #         return render(request, 'ecommerce_app/checkout.html', locals())
 
 def process_payment(request):
-    order_id = Detail.objects.filter(email=request.session['username']).first().id
+    order_id = Detail.objects.filter(email=request.session['username']).last().id
     details = get_object_or_404(Detail, id=order_id)
     host = request.get_host()
-
     paypal_dict = {
            "business": "sb-srs8h26410837@business.example.com",
         "amount": "10.00",
@@ -43,7 +42,7 @@ def process_payment(request):
 
 @csrf_exempt
 def payment_done(request):
-    details = Detail.objects.filter(email=request.session['username']).first()
+    details = Detail.objects.filter(email=request.session['username']).last()
     user = User.objects.get(username=request.session['username'])
     user.paid_member = True
     user.save()

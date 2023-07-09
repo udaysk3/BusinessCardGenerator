@@ -1,0 +1,168 @@
+{% extends 'home/base.html' %}
+
+{% block content %}
+{% load static %}
+<style>
+  .text-muted {
+    text-transform: capitalize;
+  }
+  .user-section {
+    background-color: transparent;
+  }
+</style>
+
+{% comment %} <li class="breadcrumb-item">
+  <a href="{% url 'Home' %}">
+      <i class="fa-solid fa-house"></i>
+  </a>
+</li>
+
+<li class="breadcrumb-item">
+  <a href="{% url 'profile' %}">
+      <i class="fa fa-user"></i>
+  </a>
+</li> {% endcomment %}
+{% if message %}
+<div class="container-fluid p-0 m-0">
+  <div class="alert-info alert alert-dismissible m-0 text-center" role="alert" >
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="True">&times;</span>
+    </button>
+     {{ message }}!
+  </div>
+</div>
+<script type="text/javascript">
+    setTimeout(function () {
+      $('.alert').alert('close');
+    }, 4000);
+  </script>
+
+{% endif %}
+<h3>Your Profile</h3>
+
+<div class="container">
+  <div class="d-flex justify-content-end">
+    <a class="btn btn-secondary" href="{% url 'edit_profile' %}"
+      >Edit Profile</a
+    >
+  </div>
+</div>
+
+<section class="user-section">
+  <div class="container col-sm-12 col-md-6">
+    <div class="card mb-4">
+      <div class="card-body">
+        <div class="row">
+          <div class="col-sm-3">
+            <p class="mb-0">Name</p>
+          </div>
+          <div class="col-sm-9">
+            <p class="text-muted mb-0">
+              {{ user.name }}
+            </p>
+          </div>
+        </div>
+
+        <!-- <hr />
+
+        <div class="row">
+          <div class="col-sm-3">
+            <p class="mb-0">Middle Name</p>
+          </div>
+          <div class="col-sm-9">
+            <p class="text-muted mb-0" style="text-transform: capitalize">
+              {{ user.middle_name }}
+            </p>
+          </div>
+        </div>
+
+        <hr />
+
+        <div class="row">
+          <div class="col-sm-3">
+            <p class="mb-0">Last Name</p>
+          </div>
+          <div class="col-sm-9">
+            <p class="text-muted mb-0" style="text-transform: capitalize">
+              {{ user.last_name }}
+            </p>
+          </div>
+        </div> -->
+
+        <hr />
+
+        <div class="row">
+          <div class="col-sm-3">
+            <p class="mb-0">Phone</p>
+          </div>
+          <div class="col-sm-9">
+            <p class="text-muted mb-0">
+              {{ user.phone }}
+            </p>
+          </div>
+        </div>
+
+        <hr />
+
+        <div class="row">
+          <div class="col-sm-3">
+            <p class="mb-0">Username</p>
+          </div>
+          <div class="col-sm-9">
+            <p class="text-muted mb-0">
+              {{ user.username }}
+            </p>
+          </div>
+        </div>
+
+        <hr />
+
+        {% comment %} <div class="row">
+          <div class="col-sm-3">
+            <p class="mb-0">Email</p>
+          </div>
+          <div class="col-sm-9">
+            <p class="text-muted mb-0">{{ user.username }}</p>
+          </div>
+        </div>
+        <hr /> {% endcomment %}
+        <div class="row">
+          <div class="col-sm-3">
+            <p class="mb-0">Joined Date</p>
+          </div>
+          <div class="col-sm-9">
+            <p class="text-muted mb-0">
+              {{ user.date_joined|date:"d-m-Y" }}
+            </p>
+          </div>
+        </div>
+        <hr />
+        
+       
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section>
+        <h3 class="m-5">Your Previous Designs</h3>
+        {% if cards %}
+        {% for item in cards %}
+    <div class="cards" style="width: 18rem;display:inline-block;margin:1rem;border:0.5px solid;padding:1rem;">
+        <img width="150px" class="cards-img-top" src=" {% static 'cards/images/Blue_Black_Modern_For_Business_Card_0VtNhsF.png' %} " alt="Cards image cap">
+        <div class="cards-body">
+          <h5 class="cards-title">Design {{forloop.counter}}</h5>
+          <p class="cards-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+          <a href="/cardsgenerate/{{item.id}}" class="btn" id="whatsapp" style="background-color: #008445;margin:1rem;color:#fff;margin: 1rem 3rem;">Link {{forloop.counter}} </a>
+        </div>
+      </div>
+      {% endfor %}
+      {% else %}
+      <p style="margin: 2rem;"> You have not designed any card yet.</p>
+       {% endif %}
+</section>
+
+
+
+{% endblock content %}

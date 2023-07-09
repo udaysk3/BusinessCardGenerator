@@ -1,0 +1,134 @@
+{% extends 'home/base.html' %}
+{% load static %}
+<style>
+    .username-head {
+        text-transform: capitalize;
+    }
+</style>
+<h3>Edit Profile</h3>
+{% comment %} 
+{% block breadcrum %} 
+<li class="breadcrumb-item">
+    <a href="{% url 'Home' %}">
+        <i class="fa-solid fa-house"></i>
+    </a>
+</li>
+
+<li class="breadcrumb-item">
+    <a href="{% url 'profile' %}">
+        <i class="fa fa-user"></i>
+    </a>
+</li>
+
+<li class="breadcrumb-item">
+  <a href="{% url 'edit_profile' %}">Edit Profile</a>
+</li> {% endcomment %}
+
+{% comment %} {% endblock %} {% endcomment %}
+
+
+{% block content %}
+
+<div class="container mx-auto">
+
+    {% if message %}
+    <div class="container-fluid p-0 m-0">
+      <div class="alert-danger alert alert-dismissible m-0 text-center" role="alert" >
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="True">&times;</span>
+        </button>
+         {{ message }}!
+      </div>
+    </div>
+    <script type="text/javascript">
+        setTimeout(function () {
+          $('.alert').alert('close');
+        }, 4000);
+      </script>
+    
+    {% endif %}
+
+    <div class="row">
+        <div class="col-lg-4">
+            <div class="card mb-4">
+                <div class="card-body text-center">
+                    <h5 class="username-head my-2">{{ user.name }}</h5>
+                    <p class="text-muted mb-2">Membership: {{ user.paid_member }}</p>
+                    <div class="row">
+
+                        <div class="col-md-12 d-flex justify-content-center">
+{% if request.session.oauth %}
+<div class="row">
+
+    <div class="col-md-12 mb-3">
+        <a href="https://myaccount.google.com/security"><button type="button" class="btn btn-info btn-lg btn-block">Change
+            Password</button></a>
+    </div>
+{% else %}
+                            <div class="row">
+
+                                <div class="col-md-12 mb-3">
+                                    <a href="{% url 'change_password' %}"><button type="button" class="btn btn-info btn-lg btn-block">Change
+                                            Password</button></a>
+                                </div>
+                                {% endif %}
+                                {% comment %} <div class="col-md-12 mb-3">
+                                    <a href="{% url 'change_phone' %}"><button type="button" class="btn btn-info btn-lg btn-block">Change Mobile No.</button></a>
+                                </div> {% endcomment %}
+                                {% comment %} <div class="col-md-12">
+                                    <a href="{% url 'change_email' %}"><button type="button" class="btn btn-info btn-lg btn-block">Change
+                                    Email</button></a>
+                                </div> {% endcomment %}
+                            </div>
+                        </div>
+
+                    </div>
+                        <div class="d-flex justify-content-center mb-2">
+                            
+                        </div>
+                        <div class="d-flex justify-content-center mb-2">
+                            
+                        </div>
+                    
+                </div>
+            </div>
+        </div>
+        
+
+        <div class="card shadow col-lg-8">
+            <form action="" method="post" novalidate>
+                {% csrf_token %}
+
+                <div class="form-group row my-3">
+                    <label for="name" class="col-sm-2 col-form-label">Name</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" name="name" id="name" value="{{ user.name }}">
+                    </div>
+                </div>
+                <div class="form-group row my-3">
+                    <label for="phone" class="col-sm-2 col-form-label">Phone</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" name="phone" id="phone" value="{{ user.phone }}">
+                    </div>
+                </div>
+                <div class="form-group row my-3">
+                    <label for="email" class="col-sm-2 col-form-label">Email</label>
+                    <div class="col-sm-10">
+                        <input type="email" class="form-control" name="username" id="email" value="{{ user.username }}">
+                    </div>
+                </div>
+
+                    <div class="text-center">                    
+                        <button class="btn btn-success col-md-4 my-3" type="submit">Update</button>
+                    </div>
+                
+
+                
+            
+            </form>
+        </div>
+    </div>
+
+</div>
+
+{% endblock %}

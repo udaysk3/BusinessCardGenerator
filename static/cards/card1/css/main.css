@@ -200,7 +200,7 @@ nav#mainNav a.active:after{
 
 
 .imgAbout {
-	background-image: url(../images/about.jpg) ;
+	background :#b2b2b2 ;
 	display: flex;
 	flex-direction: column;
 	justify-content: space-evenly;

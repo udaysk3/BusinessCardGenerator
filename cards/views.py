@@ -47,12 +47,12 @@ def view(req,id,theme):
     details = Detail.objects.get(id=id)
     username = details.name
     user = User.objects.get(username=req.session['username'])
-    print(user)
-    if theme >2 and theme <10:
-        if user.paid_member==True:
-            return render(req,'cards/card'+str(theme)+'.html',{'username':username,'details':details,'id':id,'theme':theme})
-        else:
-            messages.error(req,'You need to be a paid member to use this theme')
-            return redirect('payment:process_payment')
+    # print(user)
+    # if theme >2 and theme <10:
+        # if user.paid_member==True:
+        #     return render(req,'cards/card'+str(theme)+'.html',{'username':username,'details':details,'id':id,'theme':theme})
+        # else:
+        #     messages.error(req,'You need to be a paid member to use this theme')
+            # return redirect('payment:process_payment')
     return render(req,'cards/card'+str(theme)+'.html',{'username':username,'details':details,'id':id,'theme':theme})
 

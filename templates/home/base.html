@@ -17,7 +17,6 @@
     .card{
       font-weight: 300;
       font-size: 20px;
-      background-color: rgb(115, 190, 195);
   }
 
   @media (max-width: 1000px) {
@@ -38,11 +37,11 @@
           <li class="active">
             <a href="/"><span class="fa fa-home"></span> Home</a>
           </li>
-          <li>
+          {% comment %} <li>
               <a href="/about"><span class="fa fa-user"></span> About</a>
-          </li>
+          </li> {% endcomment %}
           <li>
-            <a href="/previous"><span class="fa fa-sticky-note"></span>Previous Designs</a>
+            <a href="/profile"><span class="fa fa-user"></span>My Profile</a>
           </li>
           {% comment %} <li>
             <a href="#"><span class="fa fa-cogs"></span> Services</a>
@@ -76,7 +75,7 @@
 						{% if not request.session.username %}
 					<a href="{% url 'user:signup' %}">	<button type="button" class="btn btn-primary m-2" ><span>Login/Signup</span></button></a>
 						{% else %}
-						<a href="{% url 'user:logout' %}">	<button type="button" class="btn btn-primary"><span>logout</span></button></a>
+						<a href="{% url 'user:logout_view' %}">	<button type="button" class="btn btn-primary"><span>logout</span></button></a>
 						{% endif %}	
 					</form>	
                 </li>

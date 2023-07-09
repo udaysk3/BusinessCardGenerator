@@ -11,5 +11,10 @@ urlpatterns = [
     path('home',views.home,name='home'),
     path('about',views.about,name='about'),
     path('contact',views.contact,name='contact'),
-    path('previous',views.previous,name='previous'),
+    path('profile',views.profile,name='profile'),
+    path('edit_profile',views.edit_profile,name='edit_profile'),
+    path('change_password',views.change_password,name='change_password'),
+    path('accounts/', include('allauth.urls')),
+       path('social/', include('social_django.urls', namespace='social')),
+    path('google/callback', views.google_callback, name='google_callback'),
 ]

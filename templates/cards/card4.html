@@ -39,7 +39,11 @@
 <!-- Style CSS -->
 <link rel="stylesheet" href=" {% static 'cards/card4/css/style.css' %} ">
 <link rel="stylesheet" href=" {% static 'cards/card4/css/responsive.css' %} ">
-
+<style>
+    .hidden {
+        display: none;
+      }
+    </style>
 </head>
 
 <body data-spy="scroll" data-target=".navbar-nav" data-offset="110">
@@ -129,8 +133,10 @@
                         </div>
                         <h4 class="animation" data-animation="fadeInUp" data-animation-delay="0.03s">I'm a  <span id="typed-text" class="text_default"></span></h4>
                         {% comment %} <p class="animation" data-animation="fadeInUp" data-animation-delay="0.04s">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.</p> {% endcomment %}
-                        <a href="#" class="btn btn-default rounded-0 btn-aylen animation" data-animation="fadeInUp" onclick="sharePage()" data-animation-delay="0.05s">Share</a>
+                        <a href="#" class="btn btn-default rounded-0 btn-aylen animation share-btn" data-animation="fadeInUp"  onclick="showButtons()"  data-animation-delay="0.05s">Share</a>
+                        <button class="btn btn-default rounded-0 btn-aylen animation download-btn" onclick="downloadPage()" >Download</button> <br>
                         <br>
+                       
                         <br>
                         <img src="" style="width: 6.2rem"  alt="QR Code" id="qr">
                     </div>
@@ -818,13 +824,8 @@
 <script src=" {% static 'cards/card4/js/jquery.mCustomScrollbar.concat.min.js' %} "></script>
 <!-- scripts js --> 
 <script src=" {% static 'cards/card4/js/scripts.js' %} "></script>
+<script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
 <script>
-    function sharePage(){
-        navigator.clipboard.writeText(window.location.href);
-
-        // Alert the copied text
-        alert("Link Copied: " + window.location.href);
-}
 document.getElementById("qr").src = "https://api.qrserver.com/v1/create-qr-code/?size=150x150&data="+window.location.href;
 document.getElementById("twitter").href = `https://twitter.com/intent/tweet?url=${window.location.href}&text='My Profile'`;
 document.getElementById("facebook").href = `https://www.facebook.com/sharer/sharer.php?u=${window.location.href}`;
@@ -835,6 +836,89 @@ document.getElementById("twitter2").href = `https://twitter.com/intent/tweet?url
 document.getElementById("facebook2").href = `https://www.facebook.com/sharer/sharer.php?u=${window.location.href}`;
 document.getElementById("linkedin2").href = `https://www.linkedin.com/sharing/share-offsite/?url=${window.location.href}`;
 document.getElementById("whatsapp2").href = `https://api.whatsapp.com/send?text=${window.location.href}`;
+var buttonContainer = null;
+	function showButtons() {
+		// Create buttons
+		if (!buttonContainer) {
+		  // Create the button container
+		  buttonContainer = document.createElement('div');
+		  buttonContainer.classList.add('button-container');
+	
+		  // Create buttons
+		  var copyButton = createButton('Copy URL', 'btn-primary');
+		  var whatsappButton = createButton('Share on WhatsApp', 'btn-success');
+		  var instagramButton = createButton('Share on Instagram', 'btn-danger');
+		  // Append buttons to the container
+		  buttonContainer.appendChild(copyButton);
+		  buttonContainer.appendChild(whatsappButton);
+		  buttonContainer.appendChild(instagramButton);
+          buttonContainer.style.marginTop = "10px";
+		  // Append the button container to the document body
+		buttonContainer.classList.toggle('hidden');
+		  // Append the container after the "Share" button
+		  var shareButton = document.querySelector('.share-btn');
+		  shareButton.insertAdjacentElement('afterend', buttonContainer);
+			
+	
+		  copyButton.addEventListener('click', function () {
+			copyUrlToClipboard(window.location.href);
+		  });
+	
+		  whatsappButton.addEventListener('click', function () {
+			shareOnWhatsApp(window.location.href);
+		  });
+	
+		  instagramButton.addEventListener('click', function () {
+			shareOnInstagram(window.location.href);
+		  });
+		}
+		else{
+		  buttonContainer.classList.toggle('hidden');
+	  }
+	}
+	
+	  function createButton(text, className) {
+		var button = document.createElement('button');
+		button.innerText = text;
+		button.classList.add('btn', className);
+		return button;
+	  }
+	  function copyUrlToClipboard(url) {
+		// Copy the URL to the clipboard
+		navigator.clipboard.writeText(url)
+		  .then(() => {
+			alert('URL copied to clipboard');
+		  })
+		  .catch(error => {
+			console.error('Failed to copy URL to clipboard', error);
+		  });
+	  }
+	  
+	  function shareOnWhatsApp(url) {
+		// Open WhatsApp with the image URL
+		window.open('https://api.whatsapp.com/send?text=' + encodeURIComponent(url));
+	  }
+	  
+	  function shareOnInstagram(url) {
+		// Open Instagram with the image URL
+		window.open('https://www.instagram.com/share?url=' + encodeURIComponent(url));
+	  }
+      function downloadPage() {
+        // Use html2canvas to capture the page as an image
+        html2canvas(document.body).then(function(canvas) {
+          // Convert the canvas to a data URL
+          var image = canvas.toDataURL();
+      
+          // Create an anchor element
+          var anchor = document.createElement('a');
+          anchor.href = image;
+          anchor.download = 'profile.png';
+      
+          // Trigger the download
+          anchor.click();
+        });
+        }
+	  
 </script>
 </body>
 </html>
