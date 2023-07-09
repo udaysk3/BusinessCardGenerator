@@ -158,7 +158,7 @@ google_auth_flow = Flow.from_client_config(
         'web': {
             'client_id': SOCIAL_AUTH_GOOGLE_OAUTH2_KEY,
             'client_secret': SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET,
-            'redirect_uris': ['http://127.0.0.1:8000/accounts/google/login/callback/'],
+            'redirect_uris': ['https://businesscardgenerator-production.up.railway.app/accounts/google/login/callback/'],
             'auth_uri': 'https://accounts.google.com/o/oauth2/auth',
             'token_uri': 'https://oauth2.googleapis.com/token',
             'auth_provider_x509_cert_url': 'https://www.googleapis.com/oauth2/v1/certs',
