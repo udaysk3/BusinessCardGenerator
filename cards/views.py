@@ -46,7 +46,7 @@ def form(req):
 def view(req,id,theme):
     details = Detail.objects.get(id=id)
     username = details.name
-    user = User.objects.get(username=req.session['username'])
+    # user = User.objects.get(username=req.session['username'])
     # print(user)
     # if theme >2 and theme <10:
         # if user.paid_member==True:
