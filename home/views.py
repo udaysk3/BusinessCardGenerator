@@ -39,7 +39,7 @@ def edit_profile(request):
         user.phone = request.POST.get("phone")
         user.username = request.POST.get("username")
         user.save()
-        return render(request, "home/profile.html", {"user": user})
+        return render(request, "home/profile.html", {"user": user, "message": "Profile Updated Successfully"})
     return render(request, "home/edit_profile.html", {"user": user})
         
 @login_required(login_url="user:signin")
