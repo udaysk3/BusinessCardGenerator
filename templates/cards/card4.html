@@ -134,8 +134,12 @@
                         <h4 class="animation" data-animation="fadeInUp" data-animation-delay="0.03s">I'm a  <span id="typed-text" class="text_default"></span></h4>
                         {% comment %} <p class="animation" data-animation="fadeInUp" data-animation-delay="0.04s">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.</p> {% endcomment %}
                         <a href="#" class="btn btn-default rounded-0 btn-aylen animation share-btn" data-animation="fadeInUp"  onclick="showButtons()"  data-animation-delay="0.05s">Share</a>
-                        <button class="btn btn-default rounded-0 btn-aylen animation download-btn" onclick="downloadPage()" >Download</button> <br>
-                        <br>
+                     {% if paidmember %}
+                       <button class="btn btn-default rounded-0 btn-aylen animation download-btn" onclick="downloadPage()" >Download</button> <br>
+                    {% else %}
+                        <a href="{% url 'cards:download' id 4 %}" > <button class="btn btn-default rounded-0 btn-aylen animation download-btn" onclick="downloadPage()" >Download</button></a> <br>
+                      {% endif %} 
+                      <br>
                        
                         <br>
                         <img src="" style="width: 6.2rem"  alt="QR Code" id="qr">
@@ -904,6 +908,8 @@ var buttonContainer = null;
 		window.open('https://www.instagram.com/share?url=' + encodeURIComponent(url));
 	  }
       function downloadPage() {
+
+        {% if paidmember %}
         // Use html2canvas to capture the page as an image
         html2canvas(document.body).then(function(canvas) {
           // Convert the canvas to a data URL
@@ -917,6 +923,7 @@ var buttonContainer = null;
           // Trigger the download
           anchor.click();
         });
+        {% endif %}
         }
 	  
 </script>

@@ -161,8 +161,11 @@
                         </div>
                         {% comment %} <p class="wow fadeInLeft" data-wow-duration="1.5s" data-wow-delay="1.6s">Maborisum ipsum dolor seat ameat consecteturetel seat more be elite consecteture.</p> {% endcomment %}
                         <button  onclick="showButtons()" class="share-btn theme-btn wow fadeInLeft" data-wow-duration="1.5s" data-wow-delay="1.9s">+ Share Page</button>
+                     {% if paidmember %}
                         <button class="share-btn theme-btn wow fadeInLeft download-btn" onclick="downloadPage()" style="background-color: rgb(6, 144, 208);cursor:pointer;color:aliceblue;margin-bottom:2rem;">Download</button> <br>
-
+                        {% else %}
+                     <a href="{% url 'cards:download' id 3 %}" >   <button class="share-btn theme-btn wow fadeInLeft download-btn" onclick="downloadPage()" style="background-color: rgb(6, 144, 208);cursor:pointer;color:aliceblue;margin-bottom:2rem;">Download</button></a> <br>
+                     {% endif %}
                         <div id="socialicons" class="social-profile">
                             <a href="#" class="wow fadeInLeft" id="facebook" data-wow-duration="1.2s" data-wow-delay="2.2s"><i class="fal fa-plus"></i>facebook</a>
                             <a href="#" class="wow fadeInLeft" id="twitter" data-wow-duration="1.2s" data-wow-delay="2.5s"><i class="fal fa-plus"></i>twitter</a>
@@ -795,6 +798,11 @@
     <script src=" {% static 'cards/card3/js/active.js' %}"></script>
     <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
     <script>
+        
+        {% if alert %}
+        alert({{alert}})
+        {% endif %}
+
         document.getElementById("qr").src = "https://api.qrserver.com/v1/create-qr-code/?size=150x150&data="+window.location.href;
         document.getElementById("twitter").href = `https://twitter.com/intent/tweet?url=${window.location.href}&text='My Profile'`;
         document.getElementById("facebook").href = `https://www.facebook.com/sharer/sharer.php?u=${window.location.href}`;
@@ -877,6 +885,8 @@
           }
           	  
 	  function downloadPage() {
+
+        {% if paidmember %}
         // Use html2canvas to capture the page as an image
         html2canvas(document.body).then(function(canvas) {
           // Convert the canvas to a data URL
@@ -890,6 +900,7 @@
           // Trigger the download
           anchor.click();
         });
+        {% endif %}
         }
         
     </script>

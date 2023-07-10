@@ -33,6 +33,29 @@
 			.google-btn button:active {
 				background: #1669f2;
 			}
+			.forgot-pass {
+				width: 100%;
+				margin: 2rem auto;
+				text-align: center;
+			}
+			.forgot-pass button {
+				width: 184px;
+				height: 42px;
+				background-color: #4285f4;
+				border-radius: 2px;
+				box-shadow: 0 3px 4px 0 rgba(0, 0, 0, .25);
+				border: none;
+				color: #fff;
+				font-size: 14px;
+				letter-spacing: 0.2px;
+				font-family: "Roboto";
+			}
+			.forgot-pass button:hover {
+				box-shadow: 0 0 6px #4285f4;
+			}
+			.forgot-pass button:active {
+				background: #1669f2;
+			}
 		</style>
 	</head>
 
@@ -67,7 +90,12 @@
 					<div class="form-login">
 						<button>Sign In</button>
 						<p>Don't Have an account? <a href="{% url 'user:signup' %}">Signup</a></p>
+						
 					</div>
+					<div class="forgot-pass">
+						<a href="{% url 'user:password-reset' %}"><button type="button">Forgot Password?</button></a>
+			
+				</div>
 					<div class="google-btn">
 							<button type="submit">Sign in with Google</button>
 				

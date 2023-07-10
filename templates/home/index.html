@@ -125,6 +125,91 @@
         display:none;
     }
 }
+.slider-container {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    padding:1rem;
+    border: 2px solid #082970;
+  }
+  
+  .slider {
+    display: flex;
+    overflow-x: scroll;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    width: 100%;
+  }
+  
+  .slide {
+    flex: 0 0 100%;
+    scroll-snap-align: center;
+    position: relative;
+    display: flex;
+    padding:2.5rem;
+    justify-content: center;
+    align-items: center;
+
+  }
+  
+  .slide img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+  }
+  
+  .slide-content {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    color: #fff;
+    padding: 20px;
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+  
+  .slide:hover .slide-content {
+    opacity: 1;
+  }
+  
+  .slide-content h3 {
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+  
+  .slide-content p {
+    font-size: 16px;
+  }
+  
+  .slider-controls {
+    position: absolute;
+    bottom: 10px;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .slider-control {
+    background-color: #333;
+
+    border: none;
+    color: #fff;
+    font-size: 24px;
+    cursor: pointer;
+    margin:2rem 10px 0 10px;
+    transition: color 0.3s;
+  }
+  
+  .slider-control:hover {
+    color: #ccc;
+  }
+  ::-webkit-scrollbar {
+    display: none;
+}
+  
 </style>
 
 <h2 class="mb-4 heading1 text-primary">Welcome To Business Card Generator</h2>
@@ -132,7 +217,6 @@
   <div class="card"  style="box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;padding:2rem;margin:2rem;
   background: 019CCA;
   background: linear-gradient(90deg, #3E64FF 0%, #3E64FF 100%, #3E64FF 610%); border-radius:20px;">
-  
   <h3 class="card__title text-light" style="margin:2rem;font-size:2rem; font-weight:bold">Business Cards</h3>
   <div class="d-flex" style="display: flex;"> 
       <!-- <img width="500px" height="200px" src="https://images.unsplash.com/photo-1571715268998-d6e79bed5fc9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=872&q=80" alt=""> -->
@@ -148,6 +232,37 @@
     <li><span class="text-primary icon fa fa-share mx-3"></span>Easy Sharing</li>
     <li><span class="text-primary icon fa fa-etsy mx-3"></span>Easy to Use</li>
   </ul>
+</section>
+<section>
+    <h1 class="text-accent text-center">Our Templates</h1>
+<div class="slider-container">
+    <div class="slider">
+      <div class="slide">
+        <img src="{% static 'cards/images/view1.png' %}" alt="Design 1">
+        
+        
+      </div>
+      <div class="slide">
+        <img src="{% static 'cards/images/view2.png' %}" alt="Design 2">
+        
+        
+      </div>
+      <div class="slide">
+        <img src="{% static 'cards/images/view3.png' %}" alt="Design 3">
+        
+        
+      </div>
+      <div class="slide">
+        <img src="{% static 'cards/images/view4.png' %}" alt="Design 3">
+        
+        
+      </div>
+    </div>
+    <div class="slider-controls">
+        <button class="slider-control prev" onclick="slidePrev()">&#10094;</button>
+        <button class="slider-control next" onclick="slideNext()">&#10095;</button>
+      </div>
+  </div>
 </section>
 <section>
   <h1 class="text-accent text-center">Designs</h1>
@@ -191,5 +306,17 @@
 </div>
 
 </div>
+
+<script>
+    function slideNext() {
+        const slider = document.querySelector('.slider');
+        slider.scrollBy({ left: slider.offsetWidth, behavior: 'smooth' });
+      }
+      
+      function slidePrev() {
+        const slider = document.querySelector('.slider');
+        slider.scrollBy({ left: -slider.offsetWidth, behavior: 'smooth' });
+      }
+</script>
 
 {% endblock content %}
