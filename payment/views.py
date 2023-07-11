@@ -24,25 +24,26 @@ from user.models import User
 #         return render(request, 'ecommerce_app/checkout.html', locals())
 
 def process_payment(request):
-    order_id = Detail.objects.filter(email=request.session['username']).last().id
-    details = get_object_or_404(Detail, id=order_id)
+    # order_id = Detail.objects.filter(email=request.session['username']).last().id
+    # details = Detail.objects.filter(email = User.objects.filter(id=request.user.id).first().email).last()
+    # details = get_object_or_404(Detail, id=order_id)
     host = request.get_host()
     paypal_dict = {
            "business": "sb-srs8h26410837@business.example.com",
         "amount": "10.00",
         "item_name": "name of the item",
-        "invoice": "unique"+str(details.id)+str(random.randint(1,1000000)),
+        "invoice": "unique"+str(random.randint(1,1000000)),
         "notify_url": request.build_absolute_uri(reverse('paypal-ipn')),
         "return": request.build_absolute_uri( reverse('payment:payment_done')),
         "cancel_return": request.build_absolute_uri(reverse('payment:payment_cancelled')),
     }
 
     form = PayPalPaymentsForm(initial=paypal_dict)
-    return render(request, 'paypal/process_payment.html', {'details': details, 'form': form,'id':details.id})
+    return render(request, 'paypal/process_payment.html', {'form': form})
 
 @csrf_exempt
 def payment_done(request):
-    details = Detail.objects.filter(email=request.session['username']).last()
+    details = Detail.objects.filter(email = request.session['username']).last()
     user = User.objects.get(username=request.session['username'])
     user.paid_member = True
     user.save()
@@ -53,7 +54,7 @@ def payment_done(request):
 
 @csrf_exempt
 def payment_canceled(request):
-    details = Detail.objects.filter(email=request.session['username']).first()
+    details = Detail.objects.filter(email=request.session['username']).last()
     messages.error(request,'Payment Cancelled')
     return render(request,'cards/generate.html',{'username':request.session['username'],'details':details,'id':details.id,'theme':1})
 

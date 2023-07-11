@@ -65,4 +65,12 @@ def download(req,id,theme):
             return redirect('payment:process_payment')
         return render(req,'cards/card'+str(theme)+'.html',{'details':details,'id':id,'theme':theme,"paidmember":user.paid_member})
     return render(req,'cards/card'+str(theme)+'.html',{'details':details,'id':id,'theme':theme,"alert":"You need to sign in to download the card"})
-    
+
+def closead(req,id,theme):
+    details = Detail.objects.get(id=id)
+    if 'username' in req.session:
+        user = User.objects.get(username=req.session['username'])
+        if user.paid_member == False:
+            return redirect('payment:process_payment')
+        return render(req,'cards/card'+str(theme)+'.html',{'details':details,'id':id,'theme':theme,"paidmember":user.paid_member})
+    return redirect('user:signin')

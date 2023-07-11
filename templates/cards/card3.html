@@ -42,6 +42,36 @@
         .hidden {
             display: none;
           }
+          .advertisement {
+            {% comment %} position: fixed;
+            top: 20px;
+            right: 20px; {% endcomment %}
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            z-index: 9999;
+            padding: 2rem;
+          }
+          
+          .advertisement .close-btn {
+            background-color: black;
+            position:relative;
+            top:0px;
+            border: none;
+            color: #fff;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 10px;
+            padding:0.5rem;
+          }
+          
+          .advertisement img {
+            max-width: 100%;
+            height: auto;
+          }
+          
+          
+          
         </style>
 </head>
 
@@ -754,7 +784,20 @@
             </div>          
         </div>
     </section>
-
+    <section id="ad">
+        <h4 class="mt-3 ml-4">Advertisement</h4>
+    <div class="advertisement">
+        <img width="400px" style="margin:0 auto; " src="https://www.myrsv.com/images/logo.png" alt="Advertisement">
+        {% if paidmember %}
+        <script>
+            alert("Your membership is verified. You can close the advertisement now");
+        </script>
+        <button class="close-btn" onclick="closead()">X</button>
+        {% else %}
+       <a href="{% url 'cards:closead' id theme %}"> <button class="close-btn" >X</button></a>
+        {% endif %}
+      </div>
+    </section>
     <footer class="footer-one text-white">
         <div class="container">
             <div class="row">
@@ -903,6 +946,12 @@
         {% endif %}
         }
         
+        {% if paidmember %}
+        function closead(){
+            document.getElementById("ad").style.display = "none";
+        }
+        {% endif %}
+
     </script>
 </body>
 
