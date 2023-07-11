@@ -49,7 +49,7 @@ def payment_done(request):
     user.save()
     messages.success(request,'Payment Successful')
     user = User.objects.get(username=request.session['username'])
-    return render(request,'cards/generate.html',{'username':request.session['username'],'details':details,'id':details.id,'theme':6})
+    return render(request,'cards/generate.html',{'username':request.session['username'],'details':details,'id':details.id,'theme':1})
 
 
 @csrf_exempt
