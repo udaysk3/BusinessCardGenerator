@@ -27,7 +27,7 @@ def signup(request):
         # Build verification URL
         uid = urlsafe_base64_encode(force_bytes(user.pk))
         verification_url = request.build_absolute_uri('/userverify_email/{}/{}/'.format(uid, token))
-        subject =  ''' Welcome to Card Generator, Verify your account'''
+        subject =  ''' Welcome to Infokard Card Generator, Verify your account'''
         message =  '''
         Hello {},
                 Welcome to Card Generator, the ultimate platform for designing business cards! We're thrilled to have you on board as a new user. With our easy-to-use interface and powerful design tools, you'll be able to create stunning business cards.
@@ -39,7 +39,7 @@ def signup(request):
                 Once you're satisfied with your design, simply save it and share high-quality printed cards right from our site. 
 
                 If you have any questions or need assistance along the way, our friendly support team is here to help. Enjoy your journey with Card Generator, and we can't wait to see the fantastic business cards you create
-                Please click on the link below to verify your email address and complete the registration of your account:\n\n{}\n\nThank you for using our site!\n\nCard Generator Team'''.format(user.name, verification_url)
+                Please click on the link below to verify your email address and complete the registration of your account:\n\n{}\n\nThank you for using our site!\n\Infokard Team'''.format(user.name, verification_url)
         email_from = settings.EMAIL_HOST_USER
         # send_mail(subject, message, email_from, [username,])
 
@@ -90,6 +90,7 @@ def signin(request):
         if authenticated_user is not None:
             if authenticated_user.is_active:
                 request.session['username'] = username
+                request.session.save()
                 login(request, authenticated_user)
                 return redirect('/')
         
@@ -100,6 +101,7 @@ def signin(request):
 def logout_view(request):
     
     del request.session['username']
+    request.session.save()
     logout(request)
     return render(request,'user/signin.html',{'message':'Logged out successfully'})
 
