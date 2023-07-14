@@ -100,7 +100,7 @@
                   Contact
               </a>
             </div>
-		  <div class="md:flex-shrink-0 hidden md:block">
+		  <div class=" md:block">
                   {% if not request.session.username %}
                   <a href="{% url 'user:signin' %}">	<button type="button" class="btn btn-primary m-2" ><span>Login/Signup</span></button></a>
                     {% else %}
