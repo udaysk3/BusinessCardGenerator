@@ -53,7 +53,7 @@
             <div class="flex items-center justify-between h-16">
               <!-- Logo -->
               <div class="flex-shrink-0">
-                <a href="/" class="text-white font-semibold text-lg">Infokard</a>
+                <a href="/" class="text-white font-bold text-lg">Infokard</a>
               </div>
               <!-- Mobile Menu Toggle -->
               <div class="md:hidden flex items-center">
@@ -63,16 +63,14 @@
               </div>
               <!-- Menu Items -->
               <div id="menu-items" class="hidden md:flex justify-end flex-grow">
-                <a href="/" style=" color:#61BE43" class=" hover:text-white px-4">
-                  <i class="fa fa-home mr-1"></i>
+                <a href="/" style="color:#61BE43;font-size:1rem" class=" hover:text-white px-4">
                   Home
                 </a>
-                <a href="/profile" style=" color:#61BE43" class=" hover:text-white px-4">
-                  <i class="fa fa-user mr-1"></i>
+                <a href="/profile" style=" color:#61BE43;font-size:1rem" class=" hover:text-white px-4">
                   My Profile
                 </a>
-                <a href="/contact" style=" color:#61BE43" class=" hover:text-white px-4">
-                  <i class="fa fa-paper-plane mr-1"></i>
+                <a href="/contact" style=" color:#61BE43;font-size:1rem" class=" hover:text-white px-4">
+                 
                   Contact
                 </a>
                 {% comment %} <a href="#" class="text-green-300 hover:text-white px-4">
@@ -83,7 +81,7 @@
               <!-- Login Button -->
               <div class="md:flex-shrink-0 hidden md:block">
                   {% if not request.session.username %}
-                  <a href="{% url 'user:signup' %}">	<button type="button" class="btn btn-primary m-2" ><span>Login/Signup</span></button></a>
+                  <a href="{% url 'user:signin' %}">	<button type="button" class="btn btn-primary m-2" ><span>Login/Signup</span></button></a>
                     {% else %}
                     <a href="{% url 'user:logout_view' %}">	<button type="button" class="btn btn-primary"><span>logout</span></button></a>
                     {% endif %}	
@@ -91,16 +89,14 @@
             </div>
             <!-- Responsive Dropdown Menu -->
             <div id="responsive-menu" class="md:hidden hidden">
-              <a href="/" style="color:#61BE43" class="block py-2 px-4  hover:text-white">
-                <i class="fa fa-home mr-1"></i>
-                Home
+              <a href="/" style="color:#61BE43;font-size:1rem" class="block py-2 px-4  hover:text-white">
+                               Home
               </a>
-              <a href="/profile" style="color:#61BE43" class="block py-2 px-4  hover:text-white">
-                <i class="fa fa-user mr-1"></i>
-                  My Profile
+              <a href="/profile" style="color:#61BE43;font-size:1rem" class="block py-2 px-4  hover:text-white">
+                                 My Profile
               </a>
-              <a href="/contact" style="color:#61BE43" class="block py-2 px-4  hover:text-white">
-                <i class="fa fa-paper-plane mr-1"></i>
+              <a href="/contact" style="color:#61BE43;font-size:1rem" class="block py-2 px-4  hover:text-white">
+               fa 
                   Contact
               </a>
             </div>
