@@ -9,6 +9,7 @@
     <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900" rel="stylesheet">
 		
 		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
     
 		<link rel="stylesheet" href="{% static 'home/css/style.css' %}">
   </head>
@@ -27,77 +28,115 @@
     display:none
 }
   }
+  #menu-items a:hover{
+    color:  #ccc !important;
+  }
+
+  #menu-items a:focus{
+    color:  #ccc !important;
+  }
+  #menu-items a:active{
+    color:  #ccc !important;
+  }
+  #responsive-menu a:hover{
+    color:  #ccc !important;
+  }
   </style>
   <body>
 		
-		<div class="wrapper d-flex align-items-stretch">
-			<nav id="sidebar" class="active">
-				<h1><a href="/" class="logo">IK  </a></h1>
-        <ul class="list-unstyled components mb-5">
-          <li class="active">
-            <a href="/"><span class="fa fa-home"></span> Home</a>
-          </li>
-          {% comment %} <li>
-              <a href="/about"><span class="fa fa-user"></span> About</a>
-          </li> {% endcomment %}
-          <li>
-            <a href="/profile"><span class="fa fa-user"></span>My Profile</a>
-          </li>
-          {% comment %} <li>
-            <a href="#"><span class="fa fa-cogs"></span> Services</a>
-          </li> {% endcomment %}
-          <li>
-            <a href="/contact"><span class="fa fa-paper-plane"></span> Contacts</a>
-          </li>
-        </ul>
-
-        <div class="footer">
-        	
-        </div>
-    	</nav>
-
-        <!-- Page Content  -->
-      <div id="content" class="p-4 p-md-5">
-
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-          <div class="container-fluid">
-
-            <button type="button" id="sidebarCollapse" class="btn btn-primary">
-              <i class="fa fa-bars"></i>
-              <span class="sr-only">Toggle Menu</span>
-            </button>
-            <h3 class="text-dark heading">Welcome To Infokard Card Generator</h3>
-            
-            <div class="" id="navbarSupportedContent">
-              <ul class="nav navbar-nav ml-auto">
-                <li class="nav-item active">
-					<form class="navbar-form form-inline ml-auto">
-						{% if not request.session.username %}
-					<a href="{% url 'user:signup' %}">	<button type="button" class="btn btn-primary m-2" ><span>Login/Signup</span></button></a>
-						{% else %}
-						<a href="{% url 'user:logout_view' %}">	<button type="button" class="btn btn-primary"><span>logout</span></button></a>
-						{% endif %}	
-					</form>	
-                </li>
-                {% comment %} <li class="nav-item">
-                    <a class="nav-link" href="#">About</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Portfolio</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Contact</a>
-                </li> {% endcomment %}
-              </ul>
+		
+        <nav class="bg-dark">
+          <div class="max-w-7xl mx-auto px-4">
+            <div class="flex items-center justify-between h-16">
+              <!-- Logo -->
+              <div class="flex-shrink-0">
+                <a href="/" class="text-white font-semibold text-lg">Infokard</a>
+              </div>
+              <!-- Mobile Menu Toggle -->
+              <div class="md:hidden flex items-center">
+                <button id="mobile-menu-toggle" class="text-white hover:text-green-200 focus:outline-none">
+                  <i class="fa fa-bars"></i>
+                </button>
+              </div>
+              <!-- Menu Items -->
+              <div id="menu-items" class="hidden md:flex justify-center flex-grow">
+                <a href="/" style="color:#61BE43" class=" hover:text-white px-4">
+                  <i class="fa fa-home mr-1"></i>
+                  Home
+                </a>
+                <a href="/profile" style="color:#61BE43" class=" hover:text-white px-4">
+                  <i class="fa fa-user mr-1"></i>
+                  My Profile
+                </a>
+                <a href="/contact" style="color:#61BE43" class=" hover:text-white px-4">
+                  <i class="fa fa-paper-plane mr-1"></i>
+                  Contact
+                </a>
+                {% comment %} <a href="#" class="text-green-300 hover:text-white px-4">
+                  <i class="fas fa-envelope mr-1"></i>
+                  Contact
+                </a> {% endcomment %}
+              </div>
+              <!-- Login Button -->
+              <div class="md:flex-shrink-0 hidden md:block">
+                  {% if not request.session.username %}
+                  <a href="{% url 'user:signup' %}">	<button type="button" class="btn btn-primary m-2" ><span>Login/Signup</span></button></a>
+                    {% else %}
+                    <a href="{% url 'user:logout_view' %}">	<button type="button" class="btn btn-primary"><span>logout</span></button></a>
+                    {% endif %}	
+              </div>
+            </div>
+            <!-- Responsive Dropdown Menu -->
+            <div id="responsive-menu" class="md:hidden hidden">
+              <a href="#" style="color:#61BE43" class="block py-2 px-4  hover:text-white">
+                <i class="fa fa-home mr-1"></i>
+                Home
+              </a>
+              <a href="#" style="color:#61BE43" class="block py-2 px-4  hover:text-white">
+                <i class="fa fa-user mr-1"></i>
+                  My Profile
+              </a>
+              <a href="#" style="color:#61BE43" class="block py-2 px-4  hover:text-white">
+                <i class="fa fa-paper-plane mr-1"></i>
+                  Contact
+              </a>
             </div>
           </div>
         </nav>
-
+        
+        <section style="padding:2rem;">
         {% block content %}{% endblock content %}
-
+        </section>
     <script src="{% static 'home/js/jquery.min.js' %}"></script>
     <script src="{% static 'home/js/popper.js' %}"></script>
     <script src="{% static 'home/js/bootstrap.min.js' %}"></script>
     <script src="{% static 'home/js/main.js' %}"></script>
+    <script>
+        // Mobile menu toggle functionality
+const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+const menuItems = document.getElementById('menu-items');
+const responsiveMenu = document.getElementById('responsive-menu');
+
+mobileMenuToggle.addEventListener('click', () => {
+  responsiveMenu.classList.toggle('hidden');
+});
+
+// Hide responsive menu when clicking outside
+document.addEventListener('click', (event) => {
+  const isClickInsideToggle = mobileMenuToggle.contains(event.target);
+
+  if (!isClickInsideToggle) {
+    responsiveMenu.classList.add('hidden');
+  }
+});
+
+// Update menu visibility on window resize
+window.addEventListener('resize', () => {
+  if (window.innerWidth >= 768) {
+    responsiveMenu.classList.add('hidden');
+  }
+});
+
+    </script>
   </body>
 </html>
