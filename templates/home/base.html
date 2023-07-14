@@ -96,10 +96,17 @@
                                  My Profile
               </a>
               <a href="/contact" style="color:#61BE43;font-size:1rem" class="block py-2 px-4  hover:text-white">
-               fa 
+              
                   Contact
               </a>
             </div>
+		  <div class="md:flex-shrink-0 hidden md:block">
+                  {% if not request.session.username %}
+                  <a href="{% url 'user:signin' %}">	<button type="button" class="btn btn-primary m-2" ><span>Login/Signup</span></button></a>
+                    {% else %}
+                    <a href="{% url 'user:logout_view' %}">	<button type="button" class="btn btn-primary"><span>logout</span></button></a>
+                    {% endif %}	
+		  </div>
           </div>
         </nav>
         
