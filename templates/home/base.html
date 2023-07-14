@@ -28,18 +28,21 @@
     display:none
 }
   }
+
+  #menu-items {}
+
   #menu-items a:hover{
-    color:  #61BE43 !important;
+    color:  #ccc !important;
   }
 
   #menu-items a:focus{
-    color:  #61BE43 !important;
+    color:  #ccc !important;
   }
   #menu-items a:active{
-    color:  #61BE43 !important;
+    color:  #ccc !important;
   }
   #responsive-menu a:hover{
-    color:  #61BE43 !important;
+    color:  #ccc !important;
   }
   </style>
   <body>
@@ -59,16 +62,16 @@
                 </button>
               </div>
               <!-- Menu Items -->
-              <div id="menu-items" class="hidden md:flex justify-center flex-grow">
-                <a href="/" style="" class="text-gray hover:text-white px-4">
+              <div id="menu-items" class="hidden md:flex justify-end flex-grow">
+                <a href="/" style=" color:#61BE43" class=" hover:text-white px-4">
                   <i class="fa fa-home mr-1"></i>
                   Home
                 </a>
-                <a href="/profile" style="" class="text-gray hover:text-white px-4">
+                <a href="/profile" style=" color:#61BE43" class=" hover:text-white px-4">
                   <i class="fa fa-user mr-1"></i>
                   My Profile
                 </a>
-                <a href="/contact" style="" class="text-gray hover:text-white px-4">
+                <a href="/contact" style=" color:#61BE43" class=" hover:text-white px-4">
                   <i class="fa fa-paper-plane mr-1"></i>
                   Contact
                 </a>
@@ -80,7 +83,7 @@
               <!-- Login Button -->
               <div class="md:flex-shrink-0 hidden md:block">
                   {% if not request.session.username %}
-                  <a href="{% url 'user:signin' %}">	<button type="button" class="btn btn-primary m-2" ><span>Login/Signup</span></button></a>
+                  <a href="{% url 'user:signup' %}">	<button type="button" class="btn btn-primary m-2" ><span>Login/Signup</span></button></a>
                     {% else %}
                     <a href="{% url 'user:logout_view' %}">	<button type="button" class="btn btn-primary"><span>logout</span></button></a>
                     {% endif %}	
@@ -88,15 +91,15 @@
             </div>
             <!-- Responsive Dropdown Menu -->
             <div id="responsive-menu" class="md:hidden hidden">
-              <a href="/" class="text-gray block py-2 px-4  hover:text-white">
+              <a href="/" style="color:#61BE43" class="block py-2 px-4  hover:text-white">
                 <i class="fa fa-home mr-1"></i>
                 Home
               </a>
-              <a href="/profile" class="text-gray block py-2 px-4  hover:text-white">
+              <a href="/profile" style="color:#61BE43" class="block py-2 px-4  hover:text-white">
                 <i class="fa fa-user mr-1"></i>
                   My Profile
               </a>
-              <a href="/contact" class="text-gray block py-2 px-4  hover:text-white">
+              <a href="/contact" style="color:#61BE43" class="block py-2 px-4  hover:text-white">
                 <i class="fa fa-paper-plane mr-1"></i>
                   Contact
               </a>
