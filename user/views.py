@@ -113,7 +113,7 @@ class CustomPasswordResetView(PasswordResetView):
     template_name = 'user/password_reset.html'
     success_url = reverse_lazy('user:password_reset_done')  # Update the URL name
     email_template_name = 'user/reset_password.html'
-    extra_email_context = {'protocol': 'http', 'domain': '127.0.0.1:8000'}
+    extra_email_context = {'protocol': 'http', 'domain':'businesscardgenerator-production.up.railway.app'}
     
 from django.contrib.auth.views import PasswordResetConfirmView
 from django.contrib.auth.forms import SetPasswordForm
