@@ -1951,3 +1951,11 @@ section {
 	background-color: #35506b;
 	border-color: #35506b;
 }
+
+.card-download{
+	background: url(../images/bg/bg.jpg) center center fixed no-repeat;
+	background-color: rgba(40, 40, 40, 0.9);
+	-webkit-transition: opacity 0.3s 0.6s, visibility 0s 0.9s;
+	-moz-transition: opacity 0.3s 0.6s, visibility 0s 0.9s;
+	transition: opacity 0.3s 0.6s, visibility 0s 0.9s;
+}

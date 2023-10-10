@@ -70,6 +70,10 @@
         max-width: 100%;
         height: auto;
       }
+
+      #home_section{
+        margin-top: 40px;
+      }
     </style>
 </head>
 
@@ -148,6 +152,7 @@
 <!-- START HEADER --> 
 
 <!-- START SECTION BANNER -->
+<div id="main-container">
 <section id="home_section" class="banner_section banner_shape">
     <div class="banner_slide_content pb-0">
         <div class="container"><!-- STRART CONTAINER -->
@@ -155,11 +160,13 @@
                 <div class="col-xl-6 col-md-7">
                     <div class="banner_content banner_center_content">
                         <h3 class="animation" data-animation="fadeInUp" data-animation-delay="0.02s">Hello, I'm {{details.name}}</h3>
-                        <div id="typed-strings" class="d-none">
-                            <b>{{details.role}}</b> <b>Passionate Person</b>
-                        </div>
-                        <h4 class="animation" data-animation="fadeInUp" data-animation-delay="0.03s">I'm a  <span id="typed-text" class="text_default"></span></h4>
+                        <h4 style="display: none;" id="print-role"><span style="color: #27E278;">{{ details.role }}</span> at {{details.companyname}} </h4>
+                            <div id="typed-strings" class="d-none">
+                                <b>{{details.role}}</b> <b>Passionate Person</b>
+                            </div>
+                        <h4 class="animation" data-animation="fadeInUp" data-animation-delay="0.03s" id="display-role">I'm a  <span id="typed-text" class="text_default"></span></h4>
                         {% comment %} <p class="animation" data-animation="fadeInUp" data-animation-delay="0.04s">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.</p> {% endcomment %}
+                        <div id="user-actions">
                         <a href="#" class="btn btn-default rounded-0 btn-aylen animation share-btn" data-animation="fadeInUp"  onclick="showButtons()"  data-animation-delay="0.05s">Share</a>
                      {% if paidmember %}
                        <button class="btn btn-default rounded-0 btn-aylen animation download-btn" onclick="downloadPage()" >Download</button> <br>
@@ -167,10 +174,11 @@
                         <a href="{% url 'cards:download' id 4 %}" > <button class="btn btn-default rounded-0 btn-aylen animation download-btn" onclick="downloadPage()" >Download</button></a> <br>
                       {% endif %} 
                       <br>
-                       
+                    
                         <br>
                         <img src="" style="width: 6.2rem"  alt="QR Code" id="qr">
                     </div>
+                </div>
                 </div>
                 <div class="col-xl-5 col-md-5">
                 	<div class="banner_img animation" data-animation="fadeInUp" data-animation-delay="0.02s">
@@ -228,7 +236,7 @@
                             </li>
                             <li>
                                 <span class="title">Website:</span>
-                                <p> {{details.webiste}} </p>
+                                <p> {{details.website}} </p>
                             </li>
                             <li>
                                 <span class="title">Freelance:</span>
@@ -240,6 +248,7 @@
             </div>
     </div>
 </section>
+</div>
 <!-- END SECTION ABOUT US -->
 
 <!-- START SECTION SERVICES -->
@@ -952,7 +961,11 @@ var buttonContainer = null;
 
         {% if paidmember %}
         // Use html2canvas to capture the page as an image
-        html2canvas(document.body).then(function(canvas) {
+        let main_content=document.getElementById("main-container")
+        document.getElementById("user-actions").style.visibility="hidden";
+        document.getElementById("display-role").style.display="none";
+        document.getElementById("print-role").style.display="block";
+        html2canvas(main_content).then(function(canvas) {
           // Convert the canvas to a data URL
           var image = canvas.toDataURL();
       
@@ -964,6 +977,10 @@ var buttonContainer = null;
           // Trigger the download
           anchor.click();
         });
+        document.getElementById("user-actions").style.visibility="visible";
+        document.getElementById("display-role").style.display="block";
+        document.getElementById("print-role").style.display="none";
+
         {% endif %}
         }
         {% if paidmember %}
