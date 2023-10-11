@@ -53,9 +53,9 @@
     </nav>
     <a href="#." class="cd-close">Close modal</a> </div>
     
-    
+
     <!-- Profile -->
-  <div class="profile animated bounceInUp">
+  <div class="profile animated bounceInUp"  id="main-container" >
     <div class="container">
       <div class="profile-in">
       
@@ -306,7 +306,11 @@
 	  
 	  function downloadPage() {
       // Use html2canvas to capture the page as an image
-      html2canvas(document.body).then(function(canvas) {
+      let main_content=document.getElementById("main-container")
+
+      main_content.classList.add("card-download")
+      document.getElementsByClassName("aboutSocial")[0].style.display="none";
+      html2canvas(main_content).then(function(canvas) {
         // Convert the canvas to a data URL
         var image = canvas.toDataURL();
     
@@ -318,6 +322,8 @@
         // Trigger the download
         anchor.click();
       });
+      main_content.classList.remove("card-download")
+      document.getElementsByClassName("aboutSocial")[0].style.display="block";
       }
 	  
 </script>

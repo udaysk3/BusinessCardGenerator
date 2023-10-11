@@ -132,11 +132,12 @@
 	
 	
 	<!--End main header-->
+	<div id="main-container">
 	<section id="about" class="about">
 		
 		<div class="imgAbout">
 			<img width="350px" height="250px" class="images" src="/media/{{details.profileimage}}">
-			<h5>Company : </h5>
+			<h5>Company :{{details.companyname}}  </h5>
 			<img  width="200px" class="images" src="/media/{{details.companylogo}}">
 		</div>
 		
@@ -160,10 +161,13 @@
 				
 			</div>
 
+			<div>
+
+			<div id="user-actions">
 			<button  class="btn btn-primary regButton share-btn" onclick="showButtons()" style="background-color: rgb(6, 144, 208);cursor:pointer;color:aliceblue;margin-bottom:2rem;">Share </button> <br>
 			<button class="btn btn-primary regButton download-btn" onclick="downloadPage()" style="background-color: rgb(6, 144, 208);cursor:pointer;color:aliceblue;margin-bottom:2rem;">Download</button> <br>
 			<img src="" style="width: 6.2rem"  alt="QR Code" id="qr">
-
+			</div>
 		</div>
 		
 		</div>
@@ -803,6 +807,7 @@
 										
 										
 										 {% endcomment %}
+	</div>
 						<!--Contact section-->
 						<section id="contact" class="offset section">
 
@@ -1015,7 +1020,10 @@
 
 	  function downloadPage() {
 		// Use html2canvas to capture the page as an image
-		html2canvas(document.body).then(function(canvas) {
+		let main_content=document.getElementById("main-container")
+		document.getElementById("user-actions").style.visibility="hidden";
+		document.getElementsByClassName("aboutSocial")[0].style.visibility="hidden"
+		html2canvas(main_content).then(function(canvas) {
 		  // Convert the canvas to a data URL
 		  var image = canvas.toDataURL();
 	
@@ -1027,6 +1035,9 @@
 		  // Trigger the download
 		  anchor.click();
 		});
+		document.getElementById("user-actions").style.visibility="visible";
+		document.getElementsByClassName("aboutSocial")[0].style.visibility="visible"
+
 	  }
 </script>
 

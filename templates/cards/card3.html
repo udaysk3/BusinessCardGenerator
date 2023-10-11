@@ -179,23 +179,26 @@
         </div>
     </header>
 
-    <section class="hero-section hero-1" style="background-image: url('assets/img/hero_bg_element.png')">
+    <section class="hero-section hero-1" style="background-image: url('assets/img/hero_bg_element.png')" id="main-container">
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-lg-5 col-sm-12 text-center text-lg-left">
                     <div class="hero-content overflow-hidden">
                         <span class="hello-tooltip wow fadeInLeft" data-wow-duration="1s" data-wow-delay=".5s">Hi! There</span>
-                        <h2 class="wow fadeInLeft" data-wow-duration="1.3s" data-wow-delay=".9s">{{details.name}}</h2>
-                        <div class="typed">
+                        <h2 class="wow fadeInLeft" data-wow-duration="1.3s" data-wow-delay=".9s" >{{details.name}}</h2>
+                        <h2 style="display: none;" id="print-role"><span style="color: #4d63dd;">{{details.role}}</span> at {{details.companyname}}  </h2>
+                        <div class="typed" id="display-role">
                            <h3 class="wow fadeInLeft" data-wow-duration="1.5s" data-wow-delay="1.3s">I'm a <span class="profession"></span></h3>
                         </div>
                         {% comment %} <p class="wow fadeInLeft" data-wow-duration="1.5s" data-wow-delay="1.6s">Maborisum ipsum dolor seat ameat consecteturetel seat more be elite consecteture.</p> {% endcomment %}
+                       <div id="user-actions">
                         <button  onclick="showButtons()" class="share-btn theme-btn wow fadeInLeft" data-wow-duration="1.5s" data-wow-delay="1.9s">+ Share Page</button>
                      {% if paidmember %}
                         <button class="share-btn theme-btn wow fadeInLeft download-btn" onclick="downloadPage()" style="background-color: rgb(6, 144, 208);cursor:pointer;color:aliceblue;margin-bottom:2rem;">Download</button> <br>
                         {% else %}
                      <a href="{% url 'cards:download' id 3 %}" >   <button class="share-btn theme-btn wow fadeInLeft download-btn" onclick="downloadPage()" style="background-color: rgb(6, 144, 208);cursor:pointer;color:aliceblue;margin-bottom:2rem;">Download</button></a> <br>
                      {% endif %}
+                        </div>
                         <div id="socialicons" class="social-profile">
                             <a href="#" class="wow fadeInLeft" id="facebook" data-wow-duration="1.2s" data-wow-delay="2.2s"><i class="fal fa-plus"></i>facebook</a>
                             <a href="#" class="wow fadeInLeft" id="twitter" data-wow-duration="1.2s" data-wow-delay="2.5s"><i class="fal fa-plus"></i>twitter</a>
@@ -205,6 +208,22 @@
                             <br>
                             <br>
                             <img src="" style="width: 6.2rem"  alt="QR Code" id="qr">
+                        </div>
+                        <div id="contact-detail" style="display: none;">
+                            <br><br>
+                            <div class="single-info">
+                                <h4>eMail :</h4>
+                                <span>{{details.email}}</span>
+                            </div>
+                            <div class="single-info">
+                                <h4>Phone :</h4>
+                                <span>{{details.phone}}</span>
+                            </div>
+                            <div class="single-info">
+                                <h4>Address :</h4>
+                                <span>{{details.address}}</span>
+                            </div>
+                            <br><br>
                         </div>
                     </div>
                 </div>
@@ -931,7 +950,14 @@
 
         {% if paidmember %}
         // Use html2canvas to capture the page as an image
-        html2canvas(document.body).then(function(canvas) {
+        let main_content=document.getElementById("main-container");
+        document.getElementById("socialicons").style.display="none";
+        document.getElementById("user-actions").style.display="none";
+        document.getElementById("contact-detail").style.display="block"
+        document.getElementById("display-role").style.display="none";
+        document.getElementById("print-role").style.display="block";
+
+        html2canvas(main_content).then(function(canvas) {
           // Convert the canvas to a data URL
           var image = canvas.toDataURL();
       
@@ -943,12 +969,20 @@
           // Trigger the download
           anchor.click();
         });
+        document.getElementById("socialicons").style.display="inline-block";
+        document.getElementById("user-actions").style.display="inline-block";
+        document.getElementById("contact-detail").style.display="none"
+        document.getElementById("display-role").style.display="block";
+        document.getElementById("print-role").style.display="none";
+
+
         {% endif %}
         }
         
         {% if paidmember %}
         function closead(){
             document.getElementById("ad").style.display = "none";
+
         }
         {% endif %}
 
